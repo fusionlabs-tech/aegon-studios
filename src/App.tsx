@@ -6,10 +6,16 @@ import { About } from '@/components/About'
 import { Clients } from '@/components/Clients'
 import { Contact } from '@/components/Contact'
 import { ScrollProgress } from '@/components/ScrollProgress'
+import { motion } from 'framer-motion'
 
 function App() {
   return (
-    <div className="relative">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="relative"
+    >
       <ScrollProgress />
       <Hero />
       <Showreel />
@@ -18,7 +24,7 @@ function App() {
       <About />
       <Clients />
       <Contact />
-    </div>
+    </motion.div>
   )
 }
 

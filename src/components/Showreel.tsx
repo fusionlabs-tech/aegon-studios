@@ -143,12 +143,22 @@ export function Showreel() {
   const currentVideo = videoPlaylist[currentVideoIndex]
 
   return (
-    <section
+    <motion.section
       id="showreel"
       ref={sectionRef}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1, ease: "easeOut" }}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary"
     >
-      <div className="absolute inset-0 z-0">
+      <motion.div 
+        initial={{ scale: 1.1 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute inset-0 z-0"
+      >
         <video
           ref={videoRef}
           className="w-full h-full object-cover transition-opacity duration-300"
@@ -166,7 +176,7 @@ export function Showreel() {
         
         <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/40 to-primary/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-transparent to-primary/50" />
-      </div>
+      </motion.div>
 
       <div ref={overlayRef} className="relative z-10 container mx-auto px-6 text-center">
         <motion.div
@@ -330,6 +340,6 @@ export function Showreel() {
       </div>
 
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
-    </section>
+    </motion.section>
   )
 }

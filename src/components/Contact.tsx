@@ -11,7 +11,13 @@ const socialLinks = [
 
 export function Contact() {
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-secondary/30">
+    <motion.section 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="py-24 bg-gradient-to-b from-background to-secondary/30"
+    >
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -76,13 +82,17 @@ export function Contact() {
             >
               <p className="text-sm text-muted-foreground tracking-wider uppercase">Follow Us</p>
               <div className="flex gap-4">
-                {socialLinks.map((social) => {
+                {socialLinks.map((social, index) => {
                   const Icon = social.icon
                   return (
                     <motion.a
                       key={social.label}
                       href={social.href}
                       aria-label={social.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
                       whileHover={{ scale: 1.2, rotate: 5 }}
                       whileTap={{ scale: 0.9 }}
                       className="flex items-center justify-center w-12 h-12 rounded-full bg-secondary hover:bg-primary text-foreground hover:text-primary-foreground transition-all duration-300 shadow-md hover:shadow-lg"
@@ -106,6 +116,6 @@ export function Contact() {
       >
         <p>© 2024 Aegon Studios. All rights reserved.</p>
       </motion.footer>
-    </section>
+    </motion.section>
   )
 }

@@ -67,28 +67,33 @@ export function Services() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-24 bg-secondary/30">
+    <motion.section 
+      ref={sectionRef}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="py-24 bg-secondary/30"
+    >
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2
             className="text-[clamp(3rem,8vw,6rem)] leading-none font-bold tracking-tight mb-4 font-display"
           >
             SERVICES
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          </h2>
+          <p
             className="text-muted-foreground text-lg max-w-2xl mx-auto"
           >
             Comprehensive media production services tailored to bring your creative vision to life
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
 
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
@@ -96,8 +101,15 @@ export function Services() {
             return (
               <motion.div
                 key={service.title}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+                whileHover={{ y: -12, scale: 1.02 }}
                 className="service-card"
               >
                 <Card className="h-full border-2 hover:border-primary transition-all duration-500 bg-background shadow-lg hover:shadow-2xl group">
@@ -124,6 +136,6 @@ export function Services() {
           })}
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

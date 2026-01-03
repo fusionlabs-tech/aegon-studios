@@ -39,7 +39,14 @@ export function About() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-24 bg-background relative overflow-hidden">
+    <motion.section 
+      ref={sectionRef}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="py-24 bg-background relative overflow-hidden"
+    >
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, oklch(0.15 0 0) 1px, transparent 0)`
@@ -52,7 +59,7 @@ export function About() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h2 className="text-[clamp(2.5rem,6vw,5rem)] leading-none font-bold tracking-tight mb-6 font-display">
               ABOUT AEGON STUDIOS
@@ -81,12 +88,21 @@ export function About() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             className="grid grid-cols-2 gap-8"
           >
             {stats.map((stat, index) => (
-              <div
+              <motion.div
                 key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: 0.4 + index * 0.1,
+                  ease: "backOut"
+                }}
+                whileHover={{ scale: 1.05, y: -5 }}
                 className="stat-item text-center p-8 rounded-2xl bg-secondary/50 backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-500 hover:shadow-xl"
               >
                 <div className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold text-primary mb-2">
@@ -95,11 +111,11 @@ export function About() {
                 <div className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
                   {stat.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

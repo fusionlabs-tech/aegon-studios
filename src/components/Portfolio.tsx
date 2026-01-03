@@ -120,19 +120,40 @@ export function Portfolio() {
   }, [])
 
   return (
-    <section id="portfolio" ref={sectionRef} className="py-24 bg-background">
+    <motion.section 
+      id="portfolio" 
+      ref={sectionRef} 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="py-24 bg-background"
+    >
       <div className="container mx-auto px-6">
-        <h2
-          ref={titleRef}
-          className="text-[clamp(3rem,8vw,6rem)] leading-none font-bold tracking-tight mb-4 font-display text-center"
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
-          OUR WORK
-        </h2>
-        <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-          A showcase of our creative excellence across various mediums
-        </p>
+          <h2
+            ref={titleRef}
+            className="text-[clamp(3rem,8vw,6rem)] leading-none font-bold tracking-tight mb-4 font-display text-center"
+          >
+            OUR WORK
+          </h2>
+          <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
+            A showcase of our creative excellence across various mediums
+          </p>
+        </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-3 mb-16"
+        >
           {categories.map((cat) => (
             <motion.button
               key={cat.value}
@@ -152,33 +173,50 @@ export function Portfolio() {
               </Badge>
             </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {filteredItems.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.08,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
               >
-                <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-shadow duration-500 bg-card">
+                <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-700 bg-card">
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <img
+                    <motion.img
+                      initial={{ scale: 1.2 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                    <div className="absolute inset-0 flex flex-col justify-end p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 0.6 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent group-hover:opacity-80 transition-opacity duration-500" 
+                    />
+                    <motion.div 
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                      className="absolute inset-0 flex flex-col justify-end p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+                    >
                       <Badge className="w-fit mb-3 bg-white text-primary border-0 font-semibold">
                         {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
                       </Badge>
@@ -188,7 +226,7 @@ export function Portfolio() {
                       <p className="text-sm text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                         {item.description}
                       </p>
-                    </div>
+                    </motion.div>
                   </div>
                 </Card>
               </motion.div>
@@ -196,6 +234,6 @@ export function Portfolio() {
           </motion.div>
         </AnimatePresence>
       </div>
-    </section>
+    </motion.section>
   )
 }
