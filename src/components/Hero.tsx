@@ -19,7 +19,8 @@ export function Hero() {
         y: 150, 
         rotateX: -90,
         scale: 0.8,
-        filter: 'blur(20px)'
+        filter: 'blur(20px)',
+        '--stroke-dashoffset': '100%',
       },
       {
         opacity: 1,
@@ -27,18 +28,27 @@ export function Hero() {
         rotateX: 0,
         scale: 1,
         filter: 'blur(0px)',
-        duration: 1.4,
-        stagger: 0.04,
+        '--stroke-dashoffset': '0%',
+        duration: 1.8,
+        stagger: 0.05,
         ease: 'power4.out',
         delay: 0.3,
       }
     )
 
+    gsap.to(letters, {
+      '--fill-opacity': 1,
+      duration: 1.2,
+      stagger: 0.05,
+      ease: 'power2.inOut',
+      delay: 1.2,
+    })
+
     if (subtitleRef.current) {
       gsap.fromTo(
         subtitleRef.current,
         { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, delay: 1.5, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 1, delay: 2, ease: 'power3.out' }
       )
     }
   }, [])
@@ -79,7 +89,7 @@ export function Hero() {
 
           <h1
             ref={titleRef}
-            className="text-[clamp(5rem,20vw,28rem)] leading-[0.8] font-bold tracking-[-0.02em] font-display text-white"
+            className="stroke-text text-[clamp(5rem,20vw,28rem)] leading-[0.8] font-bold tracking-[-0.02em] font-display"
             style={{ perspective: '1000px' }}
           >
             {'AEGON'.split('').map((letter, i) => (
@@ -89,7 +99,6 @@ export function Hero() {
                 style={{ 
                   display: 'inline-block',
                   transformStyle: 'preserve-3d',
-                  textShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 80px rgba(191,155,98,0.3)'
                 }}
               >
                 {letter}
@@ -103,7 +112,6 @@ export function Hero() {
                 style={{ 
                   display: 'inline-block',
                   transformStyle: 'preserve-3d',
-                  textShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 80px rgba(191,155,98,0.3)'
                 }}
               >
                 {letter}
