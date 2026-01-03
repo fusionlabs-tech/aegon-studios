@@ -12,6 +12,10 @@ export function Hero() {
     
     const letters = titleRef.current.querySelectorAll('.letter')
     
+    gsap.set(letters, {
+      '--fill-opacity': 0,
+    })
+    
     gsap.fromTo(
       letters,
       { 
@@ -20,7 +24,6 @@ export function Hero() {
         rotateX: -90,
         scale: 0.8,
         filter: 'blur(20px)',
-        '--stroke-dashoffset': '100%',
       },
       {
         opacity: 1,
@@ -28,7 +31,6 @@ export function Hero() {
         rotateX: 0,
         scale: 1,
         filter: 'blur(0px)',
-        '--stroke-dashoffset': '0%',
         duration: 1.8,
         stagger: 0.05,
         ease: 'power4.out',
@@ -189,7 +191,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2.8, repeat: Infinity, repeatType: 'reverse' }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[5]"
       >
         <div className="flex flex-col items-center gap-2 text-white/50">
           <span className="text-xs tracking-[0.2em] uppercase font-bold">Scroll</span>
@@ -197,7 +199,7 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent z-[6] pointer-events-none" />
     </section>
   )
 }
