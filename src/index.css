@@ -82,28 +82,16 @@ html {
 }
 
 .stroke-text .letter {
-  color: transparent;
+  color: white;
   -webkit-text-stroke: 3px oklch(0.75 0.15 85);
   text-stroke: 3px oklch(0.75 0.15 85);
   position: relative;
   text-shadow: 
-    0 0 30px oklch(0.75 0.15 85 / 0.5),
-    0 0 60px oklch(0.75 0.15 85 / 0.3),
+    0 0 40px oklch(0.75 0.15 85 / 0.6),
+    0 0 80px oklch(0.75 0.15 85 / 0.4),
     0 20px 60px rgba(0, 0, 0, 0.4);
   
-  background: linear-gradient(
-    135deg,
-    oklch(0.75 0.15 85),
-    oklch(0.75 0.15 85 / 0.9),
-    white,
-    oklch(0.75 0.15 85)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  
-  background-size: 200% 200%;
-  animation: shimmer 3s ease-in-out infinite;
+  -webkit-text-fill-color: white;
 }
 
 @keyframes shimmer {
