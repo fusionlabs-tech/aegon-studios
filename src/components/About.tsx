@@ -1,0 +1,105 @@
+import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const stats = [
+  { value: '500+', label: 'Projects Completed' },
+  { value: '150+', label: 'Happy Clients' },
+  { value: '8+', label: 'Years Experience' },
+  { value: '15+', label: 'Awards Won' }
+]
+
+export function About() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!statsRef.current) return
+
+    const statItems = statsRef.current.querySelectorAll('.stat-item')
+
+    gsap.fromTo(
+      statItems,
+      { opacity: 0, scale: 0.8 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'back.out(1.7)',
+        scrollTrigger: {
+          trigger: statsRef.current,
+          start: 'top 75%',
+        }
+      }
+    )
+  }, [])
+
+  return (
+    <section ref={sectionRef} className="py-24 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, oklch(0.20 0.01 264) 1px, transparent 0)`
+        }} />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-[clamp(2.5rem,6vw,5rem)] leading-none font-bold tracking-tight mb-6 font-display">
+              ABOUT AEGON STUDIO
+            </h2>
+            <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
+              <p>
+                We are a collective of visual storytellers, passionate about transforming brands and moments 
+                into unforgettable visual experiences. Based at the intersection of creativity and technology, 
+                we craft content that resonates.
+              </p>
+              <p>
+                From intimate studio sessions to large-scale event productions, our team brings technical 
+                excellence and artistic vision to every project. We don't just capture images—we create 
+                narratives that connect, inspire, and endure.
+              </p>
+              <p>
+                Our approach combines cinematic techniques with contemporary aesthetics, ensuring your 
+                story is told with the impact it deserves. We believe great content is born from collaboration, 
+                attention to detail, and an unwavering commitment to quality.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            ref={statsRef}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="grid grid-cols-2 gap-8"
+          >
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="stat-item text-center p-8 rounded-2xl bg-secondary/50 backdrop-blur-sm border-2 border-border hover:border-accent transition-all duration-500 hover:shadow-xl"
+              >
+                <div className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold text-accent mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
