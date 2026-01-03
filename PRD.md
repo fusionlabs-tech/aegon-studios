@@ -19,6 +19,13 @@ This is a content showcase with interactive filtering, smooth animations, and mu
 - **Progression**: Fade in background → Stagger in title letters → Reveal tagline → Show scroll indicator → Respond to scroll
 - **Success criteria**: Text animations complete smoothly, scroll behavior feels responsive, hero captures attention
 
+### Video Showreel Section with Autoplay Background
+- **Functionality**: Full-screen video background with overlay text, statistics, and video controls (play/pause, mute/unmute)
+- **Purpose**: Immediately demonstrate the studio's production quality through a dynamic video showcase, building credibility with impressive stats
+- **Trigger**: User scrolls past hero section
+- **Progression**: Section enters viewport → Video autoplays → Overlay content fades in with stagger → Stats animate in → User can control playback
+- **Success criteria**: Video loads and autoplays smoothly, controls are intuitive, overlay content is readable, stats create impact
+
 ### Portfolio Grid with Category Filtering
 - **Functionality**: Masonry-style grid displaying work samples with hover effects and category filters (Photography, Video, Events, Podcasts, Brand Work)
 - **Purpose**: Showcase range of work while allowing visitors to explore specific service areas

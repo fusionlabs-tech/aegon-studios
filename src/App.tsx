@@ -1,4 +1,5 @@
 import { Hero } from '@/components/Hero'
+import { Showreel } from '@/components/Showreel'
 import { Portfolio } from '@/components/Portfolio'
 import { Services } from '@/components/Services'
 import { About } from '@/components/About'
@@ -11,6 +12,7 @@ function App() {
     <div className="relative">
       <ScrollProgress />
       <Hero />
+      <Showreel />
       <Portfolio />
       <Services />
       <About />
