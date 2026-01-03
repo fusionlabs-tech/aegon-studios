@@ -42,7 +42,7 @@ export function About() {
     <section ref={sectionRef} className="py-24 bg-background relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, oklch(0.20 0.01 264) 1px, transparent 0)`
+          backgroundImage: `radial-gradient(circle at 2px 2px, oklch(0.15 0 0) 1px, transparent 0)`
         }} />
       </div>
 
@@ -55,7 +55,7 @@ export function About() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-[clamp(2.5rem,6vw,5rem)] leading-none font-bold tracking-tight mb-6 font-display">
-              ABOUT AEGON STUDIO
+              ABOUT AEGON STUDIOS
             </h2>
             <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
               <p>
@@ -87,9 +87,9 @@ export function About() {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="stat-item text-center p-8 rounded-2xl bg-secondary/50 backdrop-blur-sm border-2 border-border hover:border-accent transition-all duration-500 hover:shadow-xl"
+                className="stat-item text-center p-8 rounded-2xl bg-secondary/50 backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-500 hover:shadow-xl"
               >
-                <div className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold text-accent mb-2">
+                <div className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold text-primary mb-2">
                   {stat.value}
                 </div>
                 <div className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">

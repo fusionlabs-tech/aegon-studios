@@ -176,10 +176,10 @@ export function Showreel() {
           viewport={{ once: true }}
           className="mb-6"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/40 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 border border-white/40 backdrop-blur-md">
             <div className="relative flex items-center justify-center">
-              <span className="absolute h-3 w-3 rounded-full bg-accent animate-ping" />
-              <span className="relative h-2 w-2 rounded-full bg-accent" />
+              <span className="absolute h-3 w-3 rounded-full bg-white animate-ping" />
+              <span className="relative h-2 w-2 rounded-full bg-white" />
             </div>
             <span className="text-sm font-bold tracking-widest text-white uppercase">
               Showreel 2024
@@ -282,7 +282,7 @@ export function Showreel() {
                   className={`
                     group gap-2 px-6 py-3 font-bold tracking-wide text-sm rounded-full transition-all duration-300
                     ${isActive 
-                      ? 'bg-accent text-primary border-2 border-accent shadow-lg shadow-accent/30 hover:bg-accent/90' 
+                      ? 'bg-white text-primary border-2 border-white shadow-lg shadow-white/30 hover:bg-white/90' 
                       : 'bg-white/10 text-white border-2 border-white/30 backdrop-blur-md hover:bg-white/20 hover:border-white/50'
                     }
                     disabled:opacity-50 disabled:cursor-not-allowed

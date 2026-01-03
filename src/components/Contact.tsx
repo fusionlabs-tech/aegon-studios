@@ -34,13 +34,13 @@ export function Contact() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.a
-                href="mailto:hello@aegonstudio.com"
+                href="mailto:hello@aegonstudios.com"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Button 
                   size="lg" 
-                  className="group bg-accent hover:bg-accent/90 text-accent-foreground px-10 py-7 text-lg font-bold tracking-wider rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+                  className="group bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-7 text-lg font-bold tracking-wider rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
                 >
                   <EnvelopeSimple size={24} weight="bold" className="mr-3" />
                   GET IN TOUCH
@@ -58,10 +58,10 @@ export function Contact() {
             >
               <p className="text-sm text-muted-foreground mb-4 tracking-wider uppercase">Or reach us at</p>
               <a 
-                href="mailto:hello@aegonstudio.com" 
+                href="mailto:hello@aegonstudios.com" 
                 className="text-2xl font-display font-bold text-foreground hover:text-accent transition-colors duration-300"
               >
-                hello@aegonstudio.com
+                hello@aegonstudios.com
               </a>
             </motion.div>
 
@@ -85,7 +85,7 @@ export function Contact() {
                       aria-label={social.label}
                       whileHover={{ scale: 1.2, rotate: 5 }}
                       whileTap={{ scale: 0.9 }}
-                      className="flex items-center justify-center w-12 h-12 rounded-full bg-secondary hover:bg-accent text-foreground hover:text-accent-foreground transition-all duration-300 shadow-md hover:shadow-lg"
+                      className="flex items-center justify-center w-12 h-12 rounded-full bg-secondary hover:bg-primary text-foreground hover:text-primary-foreground transition-all duration-300 shadow-md hover:shadow-lg"
                     >
                       <Icon size={24} weight="fill" />
                     </motion.a>
@@ -104,7 +104,7 @@ export function Contact() {
         transition={{ duration: 0.8, delay: 0.8 }}
         className="mt-24 text-center text-sm text-muted-foreground"
       >
-        <p>© 2024 Aegon Studio. All rights reserved.</p>
+        <p>© 2024 Aegon Studios. All rights reserved.</p>
       </motion.footer>
     </section>
   )

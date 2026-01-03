@@ -144,8 +144,8 @@ export function Portfolio() {
                 variant={activeCategory === cat.value ? 'default' : 'outline'}
                 className={`px-6 py-2 text-sm font-semibold tracking-wide cursor-pointer transition-all duration-300 ${
                   activeCategory === cat.value
-                    ? 'bg-accent text-accent-foreground border-accent shadow-lg'
-                    : 'hover:border-accent/50'
+                    ? 'bg-primary text-primary-foreground border-primary shadow-lg'
+                    : 'hover:border-primary/50'
                 }`}
               >
                 {cat.label}
@@ -179,7 +179,7 @@ export function Portfolio() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                     <div className="absolute inset-0 flex flex-col justify-end p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      <Badge className="w-fit mb-3 bg-accent text-accent-foreground border-0 font-semibold">
+                      <Badge className="w-fit mb-3 bg-white text-primary border-0 font-semibold">
                         {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
                       </Badge>
                       <h3 className="text-2xl font-display font-bold mb-2">

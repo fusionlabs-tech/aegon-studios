@@ -100,13 +100,13 @@ export function Services() {
                 transition={{ duration: 0.3 }}
                 className="service-card"
               >
-                <Card className="h-full border-2 hover:border-accent transition-all duration-500 bg-background shadow-lg hover:shadow-2xl group">
+                <Card className="h-full border-2 hover:border-primary transition-all duration-500 bg-background shadow-lg hover:shadow-2xl group">
                   <CardHeader className="pb-4">
-                    <div className="mb-4 inline-flex items-center justify-center w-16 h-16 rounded-xl bg-accent/10 group-hover:bg-accent transition-colors duration-500">
+                    <div className="mb-4 inline-flex items-center justify-center w-16 h-16 rounded-xl bg-primary/5 group-hover:bg-primary transition-colors duration-500">
                       <Icon 
                         size={32} 
                         weight="duotone" 
-                        className="text-accent group-hover:text-accent-foreground transition-colors duration-500"
+                        className="text-primary group-hover:text-primary-foreground transition-colors duration-500"
                       />
                     </div>
                     <CardTitle className="text-2xl font-display tracking-tight">

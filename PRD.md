@@ -1,6 +1,6 @@
 # Planning Guide
 
-Aegon Studio is a premium media production portfolio that showcases their expertise in photography, videography, studio sessions, event coverage, and podcast production, presenting their work with award-worthy design and captivating animations.
+Aegon Studios is a premium media production portfolio that showcases their expertise in photography, videography, studio sessions, event coverage, and podcast production, presenting their work with award-worthy design and captivating animations.
 
 **Experience Qualities**:
 1. **Cinematic** - The experience should feel like watching a high-end production reel, with smooth transitions and dramatic reveals that mirror the studio's film expertise.
@@ -72,19 +72,18 @@ This is a content showcase with interactive filtering, smooth animations, and mu
 The design should evoke prestige, creativity, and technical mastery—like walking into a high-end production studio. Think award-winning agency websites with cinematic storytelling, bold typography that commands space, and interactions that surprise and delight. The aesthetic should feel contemporary and editorial, with generous white space punctuated by dramatic imagery.
 
 ## Color Selection
-A sophisticated monochromatic base with strategic warm accents that represent creative energy and spotlight moments.
+A bold monochromatic black and white palette that matches the studio's logo aesthetic, with stark contrast and clean, modern appeal.
 
-- **Primary Color**: Deep Charcoal (oklch(0.20 0.01 264)) - Anchors the design with sophisticated darkness, communicating professionalism and letting work shine
+- **Primary Color**: Pure Black (oklch(0.15 0 0)) - Strong, bold, professional anchor communicating authority and sophistication
 - **Secondary Colors**: 
-  - Pure White (oklch(1 0 0)) for crisp contrast and breathing room
-  - Soft Gray (oklch(0.94 0 0)) for subtle backgrounds that don't compete
-  - Medium Gray (oklch(0.55 0 0)) for supporting text
-- **Accent Color**: Cinematic Gold (oklch(0.75 0.15 85)) - Warm, luxurious accent for CTAs and spotlight moments, evoking film premiere energy
+  - Pure White (oklch(1 0 0)) for maximum contrast and breathing room
+  - Soft Gray (oklch(0.96 0 0)) for subtle backgrounds that don't compete
+  - Medium Gray (oklch(0.50 0 0)) for supporting text
+- **Accent Color**: Black (oklch(0.15 0 0)) - Keeping the monochrome theme consistent with white text for CTAs creating high contrast
 - **Foreground/Background Pairings**: 
-  - Background White (oklch(1 0 0)): Charcoal text (oklch(0.20 0.01 264)) - Ratio 13.4:1 ✓
-  - Background Charcoal (oklch(0.20 0.01 264)): White text (oklch(1 0 0)) - Ratio 13.4:1 ✓
-  - Accent Gold (oklch(0.75 0.15 85)): Charcoal text (oklch(0.20 0.01 264)) - Ratio 6.2:1 ✓
-  - Background Soft Gray (oklch(0.94 0 0)): Charcoal text (oklch(0.20 0.01 264)) - Ratio 11.8:1 ✓
+  - Background White (oklch(1 0 0)): Black text (oklch(0.15 0 0)) - Ratio 15.1:1 ✓
+  - Background Black (oklch(0.15 0 0)): White text (oklch(1 0 0)) - Ratio 15.1:1 ✓
+  - Background Soft Gray (oklch(0.96 0 0)): Black text (oklch(0.15 0 0)) - Ratio 13.2:1 ✓
 
 ## Font Selection
 Typography should feel editorial and commanding—like title cards in a prestige production.
@@ -131,9 +130,9 @@ Animations should feel cinematic and purposeful—inspired by film title sequenc
   - **Scroll Progress**: Custom thin progress bar at top showing scroll depth
   
 - **States**:
-  - **Buttons**: Default (gold with charcoal text) / Hover (scale 1.05, slight glow) / Active (scale 0.98) / Focus (ring with gold)
+  - **Buttons**: Default (black with white text) / Hover (scale 1.05, subtle shadow) / Active (scale 0.98) / Focus (ring with black)
   - **Portfolio Items**: Default (normal) / Hover (scale 1.05, overlay visible) / Loading (skeleton with pulse)
-  - **Filter Badges**: Default (ghost) / Active (solid gold) / Hover (subtle scale)
+  - **Filter Badges**: Default (ghost) / Active (solid black) / Hover (subtle scale)
   
 - **Icon Selection**:
   - Camera (Photography)

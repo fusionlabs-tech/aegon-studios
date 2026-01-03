@@ -50,17 +50,17 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[oklch(0.10_0_0)]" />
         
         <div className="absolute inset-0" style={{
           backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 3px),
-            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 3px)
+            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 3px),
+            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 3px)
           `
         }} />
         
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/3 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/3 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10 w-full">
@@ -71,9 +71,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="mb-6 md:mb-8"
           >
-            <div className="inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-xs md:text-sm font-bold tracking-[0.2em] text-white/90 uppercase">Premium Media Production</span>
+            <div className="inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
+              <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+              <span className="text-xs md:text-sm font-bold tracking-[0.2em] text-white uppercase">Premium Media Production</span>
             </div>
           </motion.div>
 
@@ -95,7 +95,7 @@ export function Hero() {
               </span>
             ))}
             <br />
-            {'STUDIO'.split('').map((letter, i) => (
+            {'STUDIOS'.split('').map((letter, i) => (
               <span 
                 key={i + 5} 
                 className="letter inline-block" 
@@ -114,7 +114,7 @@ export function Hero() {
             className="max-w-2xl mx-auto mt-6 md:mt-8 mb-8 md:mb-12 px-4"
           >
             <p className="text-lg md:text-2xl text-white/80 font-light leading-relaxed tracking-wide">
-              Crafting <span className="font-semibold text-accent">cinematic stories</span> through photography, videography, and immersive experiences
+              Crafting <span className="font-semibold text-white">cinematic stories</span> through photography, videography, and immersive experiences
             </p>
           </div>
 
@@ -126,7 +126,7 @@ export function Hero() {
           >
             <motion.button
               onClick={scrollToShowreel}
-              className="group inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-accent text-primary rounded-full font-bold tracking-[0.15em] hover:shadow-2xl hover:shadow-accent/40 transition-all duration-300 text-sm md:text-base w-full sm:w-auto justify-center"
+              className="group inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-white text-primary rounded-full font-bold tracking-[0.15em] hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 text-sm md:text-base w-full sm:w-auto justify-center"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -136,7 +136,7 @@ export function Hero() {
 
             <motion.button
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-white/5 text-white border border-white/20 backdrop-blur-sm rounded-full font-bold tracking-[0.15em] hover:bg-white hover:text-primary hover:border-white transition-all duration-300 text-sm md:text-base w-full sm:w-auto justify-center"
+              className="group inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-white/10 text-white border border-white/30 backdrop-blur-sm rounded-full font-bold tracking-[0.15em] hover:bg-white hover:text-primary hover:border-white transition-all duration-300 text-sm md:text-base w-full sm:w-auto justify-center"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
