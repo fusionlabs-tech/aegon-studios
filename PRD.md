@@ -19,12 +19,12 @@ This is a content showcase with interactive filtering, smooth animations, and mu
 - **Progression**: Fade in background → Stagger in title letters → Reveal tagline → Show scroll indicator → Respond to scroll
 - **Success criteria**: Text animations complete smoothly, scroll behavior feels responsive, hero captures attention
 
-### Video Showreel Section with Autoplay Background
-- **Functionality**: Full-screen video background with overlay text, statistics, and video controls (play/pause, mute/unmute)
-- **Purpose**: Immediately demonstrate the studio's production quality through a dynamic video showcase, building credibility with impressive stats
+### Video Showreel Section with Autoplay Background and Playlist Switcher
+- **Functionality**: Full-screen video background with overlay text, statistics, video controls (play/pause, mute/unmute), and playlist switcher allowing users to view different types of content (Film Production, Studio Sessions, Event Coverage, Podcast Production)
+- **Purpose**: Demonstrate the studio's diverse production capabilities through multiple video showcases, building credibility with impressive stats while allowing visitors to explore specific service areas
 - **Trigger**: User scrolls past hero section
-- **Progression**: Section enters viewport → Video autoplays → Overlay content fades in with stagger → Stats animate in → User can control playback
-- **Success criteria**: Video loads and autoplays smoothly, controls are intuitive, overlay content is readable, stats create impact
+- **Progression**: Section enters viewport → Video autoplays → Overlay content fades in with stagger → Stats animate in → User can control playback → User clicks playlist button → Video transitions smoothly to new content with animated title/category change
+- **Success criteria**: Videos load and autoplay smoothly, controls are intuitive, playlist switching is seamless with smooth transitions, overlay content is readable, stats create impact, category badges clearly identify content type
 
 ### Portfolio Grid with Category Filtering
 - **Functionality**: Masonry-style grid displaying work samples with hover effects and category filters (Photography, Video, Events, Podcasts, Brand Work)
