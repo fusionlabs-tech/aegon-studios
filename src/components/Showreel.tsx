@@ -23,7 +23,7 @@ const videoPlaylist: VideoItem[] = [
     title: 'Film Production',
     category: 'Video Production',
     description: 'Behind the scenes of our cinematic productions',
-    url: 'https://cdn.coverr.co/videos/coverr-a-man-recording-a-video-with-a-camera-6142/1080p.mp4',
+    url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     icon: VideoCamera
   },
   {
@@ -31,7 +31,7 @@ const videoPlaylist: VideoItem[] = [
     title: 'Studio Sessions',
     category: 'Photography',
     description: 'Professional studio photography and lighting setups',
-    url: 'https://cdn.coverr.co/videos/coverr-film-production-4347/1080p.mp4',
+    url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
     icon: Camera
   },
   {
@@ -39,7 +39,7 @@ const videoPlaylist: VideoItem[] = [
     title: 'Event Coverage',
     category: 'Events',
     description: 'Capturing memorable moments at live events',
-    url: 'https://cdn.coverr.co/videos/coverr-people-at-a-live-concert-9499/1080p.mp4',
+    url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
     icon: Calendar
   },
   {
@@ -47,7 +47,7 @@ const videoPlaylist: VideoItem[] = [
     title: 'Podcast Production',
     category: 'Audio/Video',
     description: 'High-quality podcast recording and production',
-    url: 'https://cdn.coverr.co/videos/coverr-recording-a-podcast-8440/1080p.mp4',
+    url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
     icon: Microphone
   }
 ]
