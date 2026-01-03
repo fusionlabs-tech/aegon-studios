@@ -12,10 +12,6 @@ export function Hero() {
     
     const letters = titleRef.current.querySelectorAll('.letter')
     
-    gsap.set(letters, {
-      '--fill-opacity': 0,
-    })
-    
     gsap.fromTo(
       letters,
       { 
@@ -37,14 +33,6 @@ export function Hero() {
         delay: 0.3,
       }
     )
-
-    gsap.to(letters, {
-      '--fill-opacity': 1,
-      duration: 1.2,
-      stagger: 0.05,
-      ease: 'power2.inOut',
-      delay: 1.2,
-    })
 
     if (subtitleRef.current) {
       gsap.fromTo(
