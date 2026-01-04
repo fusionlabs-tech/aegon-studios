@@ -63,8 +63,8 @@ export function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/3 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
       
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10 w-full">
-        <div className="flex flex-col items-center justify-center text-center">
+      <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 relative z-10 w-full max-w-full overflow-hidden">
+        <div className="flex flex-col items-center justify-center text-center max-w-full">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -79,8 +79,8 @@ export function Hero() {
 
           <h1
             ref={titleRef}
-            className="stroke-text text-[clamp(5rem,20vw,28rem)] leading-[0.8] font-bold tracking-[-0.02em] font-display px-2 sm:px-4 md:px-6"
-            style={{ perspective: '1000px' }}
+            className="stroke-text text-[clamp(4rem,15vw,28rem)] leading-[0.85] font-bold tracking-[-0.02em] font-display px-4 sm:px-6 md:px-8 w-full"
+            style={{ perspective: '1000px', wordBreak: 'keep-all' }}
           >
             {'AEGON'.split('').map((letter, i) => (
               <span 

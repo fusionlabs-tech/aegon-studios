@@ -92,6 +92,11 @@ body {
   font-family: var(--font-bebas);
 }
 
+.stroke-text {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
 .stroke-text .letter {
   color: white;
   -webkit-text-stroke: 3px white;
@@ -151,7 +156,7 @@ body {
 
 @media (max-width: 480px) {
   .stroke-text .letter {
-    -webkit-text-stroke: 1.5px white;
-    text-stroke: 1.5px white;
+    -webkit-text-stroke: 1px white;
+    text-stroke: 1px white;
   }
 }
