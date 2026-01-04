@@ -156,21 +156,6 @@ export function Testimonials() {
 
   return (
     <>
-      <div className="bg-background">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center pt-20 pb-8"
-        >
-          <h2 className="text-[clamp(3rem,8vw,7rem)] leading-none font-bold tracking-tight font-display text-foreground">
-            TESTIMONIALS
-          </h2>
-        </motion.div>
-        <ZigzagDivider color="hsl(var(--foreground))" />
-      </div>
-
       <section 
         ref={sectionRef}
         className="relative bg-background overflow-hidden pb-0"

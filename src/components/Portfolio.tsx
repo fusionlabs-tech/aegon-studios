@@ -132,13 +132,13 @@ export function Portfolio() {
       <section id="portfolio" className="relative bg-background">
         <div ref={containerRef} className="relative">
           <div ref={stickyRef} className="h-screen w-full overflow-hidden">
-            <div className="absolute inset-0 grid lg:grid-cols-2 gap-0">
+            <div className="absolute inset-0 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 px-6 lg:px-12">
               <motion.div
                 key={activeIndex}
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
-                className="relative w-full h-full overflow-hidden bg-black"
+                className="relative w-full lg:w-[45%] h-[50vh] lg:h-[60vh] overflow-hidden bg-black rounded-lg shadow-2xl flex-shrink-0"
               >
                 <motion.div
                   initial={{ scale: 1.2 }}
@@ -164,39 +164,14 @@ export function Portfolio() {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="absolute top-8 left-8 z-10"
+                  className="absolute top-4 left-4 z-10"
                 >
-                  <div className="text-white/70 font-display text-xl md:text-2xl tracking-[0.3em] mb-4 font-bold">
+                  <div className="text-white/70 font-display text-sm tracking-[0.3em] mb-2 font-bold">
                     CASE STUDY
                   </div>
-                  <div className="text-white font-display text-[8rem] md:text-[12rem] lg:text-[14rem] xl:text-[16rem] font-bold tracking-tight leading-none drop-shadow-2xl">
+                  <div className="text-white font-display text-[3rem] md:text-[4rem] font-bold tracking-tight leading-none drop-shadow-2xl">
                     {String(activeIndex + 1).padStart(2, '0')}
                   </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  className="absolute bottom-8 left-8 right-8 lg:hidden"
-                >
-                  <Badge className="mb-4 bg-white text-primary border-0 font-semibold tracking-wider text-xs">
-                    {activeWork.category.toUpperCase()}
-                  </Badge>
-                  <h3 className="text-6xl md:text-7xl font-display font-bold text-white mb-4 leading-tight">
-                    {activeWork.title}
-                  </h3>
-                  <p className="text-white/90 text-lg md:text-xl mb-6 max-w-lg leading-relaxed">
-                    {activeWork.description}
-                  </p>
-                  <Button
-                    onClick={() => setSelectedWork(activeWork)}
-                    size="lg"
-                    className="bg-white text-primary hover:bg-white/90 font-bold tracking-wider px-6 py-6 text-base"
-                  >
-                    VIEW CASE STUDY
-                    <ArrowRight weight="bold" className="ml-2" size={20} />
-                  </Button>
                 </motion.div>
               </motion.div>
 
@@ -205,32 +180,32 @@ export function Portfolio() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }}
-                className="hidden lg:flex flex-col justify-center px-12 xl:px-20 bg-background"
+                className="flex flex-col justify-center w-full lg:w-[45%] max-h-[60vh] overflow-y-auto"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                  <Badge className="mb-6 bg-primary text-primary-foreground border-0 font-semibold tracking-wider text-sm">
+                  <Badge className="mb-4 bg-primary text-primary-foreground border-0 font-semibold tracking-wider text-sm">
                     {activeWork.category.toUpperCase()}
                   </Badge>
                   
-                  <h3 className="text-7xl xl:text-9xl 2xl:text-[10rem] font-display font-bold text-foreground mb-6 leading-none">
+                  <h3 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-foreground mb-4 leading-tight">
                     {activeWork.title}
                   </h3>
                   
-                  <p className="text-muted-foreground text-xl xl:text-2xl mb-10 leading-relaxed max-w-2xl">
+                  <p className="text-muted-foreground text-base md:text-lg lg:text-xl mb-6 leading-relaxed">
                     {activeWork.description}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-8 mb-10 pb-10 border-b border-border">
+                  <div className="grid grid-cols-2 gap-6 mb-6 pb-6 border-b border-border">
                     <div>
                       <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
                         <Tag weight="bold" size={16} />
                         <span className="font-semibold tracking-wider text-xs">CLIENT</span>
                       </div>
-                      <div className="text-foreground font-semibold text-xl">
+                      <div className="text-foreground font-semibold text-lg">
                         {activeWork.client}
                       </div>
                     </div>
@@ -239,22 +214,22 @@ export function Portfolio() {
                         <Calendar weight="bold" size={16} />
                         <span className="font-semibold tracking-wider text-xs">YEAR</span>
                       </div>
-                      <div className="text-foreground font-semibold text-xl">
+                      <div className="text-foreground font-semibold text-lg">
                         {activeWork.year}
                       </div>
                     </div>
                   </div>
 
-                  <div className="mb-10">
-                    <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-4">
+                  <div className="mb-6">
+                    <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-3">
                       SERVICES
                     </div>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2">
                       {activeWork.services.map((service, idx) => (
                         <Badge
                           key={idx}
                           variant="outline"
-                          className="px-5 py-2.5 text-base border-border font-medium"
+                          className="px-4 py-2 text-sm border-border font-medium"
                         >
                           {service}
                         </Badge>
@@ -262,20 +237,20 @@ export function Portfolio() {
                     </div>
                   </div>
 
-                  <div className="mb-10">
-                    <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-4">
+                  <div className="mb-6">
+                    <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-3">
                       THE CHALLENGE
                     </div>
-                    <p className="text-foreground leading-relaxed text-lg">
+                    <p className="text-foreground leading-relaxed text-base">
                       {activeWork.challenge}
                     </p>
                   </div>
 
-                  <div className="mb-12">
-                    <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-4">
+                  <div className="mb-8">
+                    <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-3">
                       THE RESULT
                     </div>
-                    <p className="text-foreground font-semibold leading-relaxed text-lg">
+                    <p className="text-foreground font-semibold leading-relaxed text-base">
                       {activeWork.result}
                     </p>
                   </div>
@@ -283,7 +258,7 @@ export function Portfolio() {
                   <Button
                     onClick={() => setSelectedWork(activeWork)}
                     size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider text-base px-8 py-6 group"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider text-base px-6 py-5 group w-full lg:w-auto"
                   >
                     VIEW FULL CASE STUDY
                     <ArrowRight weight="bold" size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
