@@ -32,7 +32,8 @@ const services = [
       'Professional shoot with art direction',
       'Post-production and retouching',
       'Final delivery in multiple formats'
-    ]
+    ],
+    image: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&h=600&fit=crop&q=90'
   },
   {
     icon: VideoCamera,
@@ -54,7 +55,8 @@ const services = [
       'Multi-camera shoot with cinema-grade equipment',
       'Professional editing and color grading',
       'Sound design and final delivery'
-    ]
+    ],
+    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=600&fit=crop&q=90'
   },
   {
     icon: Buildings,
@@ -76,7 +78,8 @@ const services = [
       'Dedicated technical support during session',
       'Real-time monitoring and adjustments',
       'Post-production services available'
-    ]
+    ],
+    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&h=600&fit=crop&q=90'
   },
   {
     icon: Calendar,
@@ -98,7 +101,8 @@ const services = [
       'Multi-angle coverage during event',
       'Fast turnaround editing',
       'Highlight reels and full coverage delivery'
-    ]
+    ],
+    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop&q=90'
   },
   {
     icon: Microphone,
@@ -120,7 +124,8 @@ const services = [
       'Audio mixing and mastering',
       'Video editing with graphics',
       'Platform-optimized delivery'
-    ]
+    ],
+    image: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&h=600&fit=crop&q=90'
   },
   {
     icon: Sparkle,
@@ -142,13 +147,15 @@ const services = [
       'Multi-format content production',
       'Platform optimization',
       'Performance tracking and iteration'
-    ]
+    ],
+    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop&q=90'
   }
 ]
 
 export function ServicesPage() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)
+  const [hoveredService, setHoveredService] = useState<number | null>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -267,17 +274,26 @@ export function ServicesPage() {
                 <motion.div
                   key={service.title}
                   className="service-item relative"
+                  onMouseEnter={() => setHoveredService(index)}
+                  onMouseLeave={() => setHoveredService(null)}
                 >
                   <div className="grid lg:grid-cols-2 gap-12 items-start">
                     <div className="space-y-8">
                       <div className="flex items-start gap-6">
                         <motion.div 
                           whileHover={{ scale: 1.1, rotate: 5 }}
-                          className="flex-shrink-0 w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center"
+                          className="relative flex-shrink-0 w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center group"
                         >
-                          <Icon size={40} weight="duotone" className="text-primary" />
+                          <Icon size={40} weight="duotone" className="text-primary relative z-10" />
+                          {hoveredService === index && (
+                            <motion.div 
+                              layoutId="service-hover-bg"
+                              className="absolute inset-0 bg-primary rounded-2xl"
+                              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                            />
+                          )}
                         </motion.div>
-                        <div>
+                        <div className="flex-1">
                           <div className="text-6xl font-display font-bold text-primary/20 mb-2">
                             {service.number}
                           </div>
@@ -289,6 +305,23 @@ export function ServicesPage() {
                           </p>
                         </div>
                       </div>
+
+                      {hoveredService === index && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                          transition={{ duration: 0.3 }}
+                          className="relative aspect-video rounded-2xl overflow-hidden border-2 border-primary lg:hidden"
+                        >
+                          <img 
+                            src={service.image} 
+                            alt={`${service.title} in action`}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+                        </motion.div>
+                      )}
 
                       <p className="text-lg text-muted-foreground leading-relaxed">
                         {service.description}
@@ -315,6 +348,30 @@ export function ServicesPage() {
                     </div>
 
                     <div className="lg:sticky lg:top-32">
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: hoveredService === index ? 1 : 0.4 }}
+                        transition={{ duration: 0.3 }}
+                        className="relative aspect-video rounded-2xl overflow-hidden border-2 border-border mb-8 hidden lg:block"
+                      >
+                        <img 
+                          src={service.image} 
+                          alt={`${service.title} in action`}
+                          className="w-full h-full object-cover transition-transform duration-500"
+                          style={{
+                            transform: hoveredService === index ? 'scale(1.05)' : 'scale(1)'
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+                        {hoveredService === index && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="absolute inset-0 ring-4 ring-primary rounded-2xl"
+                          />
+                        )}
+                      </motion.div>
+
                       <div className="bg-secondary/30 rounded-3xl p-8 border-2 border-border">
                         <h3 className="text-3xl font-display font-bold mb-6">Our Process</h3>
                         <div className="space-y-4">

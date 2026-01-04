@@ -63,27 +63,39 @@ const values = [
 const teamMembers = [
   {
     role: 'Creative Direction',
-    description: 'Visionaries who conceptualize and guide every project from inception to completion, ensuring creative excellence and brand alignment.'
+    description: 'Visionaries who conceptualize and guide every project from inception to completion, ensuring creative excellence and brand alignment.',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop&q=90',
+    name: 'Alex Carter'
   },
   {
     role: 'Cinematography',
-    description: 'Skilled operators behind the lens, crafting stunning visuals with cinema-grade equipment and an eye for compelling composition.'
+    description: 'Skilled operators behind the lens, crafting stunning visuals with cinema-grade equipment and an eye for compelling composition.',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&h=600&fit=crop&q=90',
+    name: 'Marcus Rivera'
   },
   {
     role: 'Post-Production',
-    description: 'Expert editors and colorists who transform raw footage into polished, professional content that captivates audiences.'
+    description: 'Expert editors and colorists who transform raw footage into polished, professional content that captivates audiences.',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop&q=90',
+    name: 'Sophie Chen'
   },
   {
     role: 'Audio Production',
-    description: 'Sound engineers and designers who ensure every project has crystal-clear audio and immersive soundscapes.'
+    description: 'Sound engineers and designers who ensure every project has crystal-clear audio and immersive soundscapes.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&q=90',
+    name: 'David Thomson'
   },
   {
     role: 'Production Management',
-    description: 'Coordinators who handle logistics, scheduling, and client communication to ensure seamless project execution.'
+    description: 'Coordinators who handle logistics, scheduling, and client communication to ensure seamless project execution.',
+    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500&h=600&fit=crop&q=90',
+    name: 'Emma Williams'
   },
   {
     role: 'Creative Strategy',
-    description: 'Strategists who develop content plans that align with brand objectives and resonate with target audiences.'
+    description: 'Strategists who develop content plans that align with brand objectives and resonate with target audiences.',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=600&fit=crop&q=90',
+    name: 'Ryan Mitchell'
   }
 ]
 
@@ -333,7 +345,7 @@ export function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.role}
@@ -341,14 +353,30 @@ export function AboutPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-xl bg-background border border-border hover:border-primary transition-all duration-300"
+                whileHover={{ y: -8 }}
+                className="group rounded-2xl bg-background border-2 border-border hover:border-primary transition-all duration-300 overflow-hidden"
               >
-                <h3 className="text-xl font-display font-bold mb-3">
-                  {member.role}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {member.description}
-                </p>
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-display font-bold text-white mb-1">
+                      {member.name}
+                    </h3>
+                    <p className="text-white/90 font-semibold text-sm tracking-wide">
+                      {member.role}
+                    </p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {member.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>

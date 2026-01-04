@@ -157,10 +157,10 @@ export function Testimonials() {
     <section 
       ref={sectionRef}
       className="relative py-32 bg-background overflow-hidden"
-      style={{ minHeight: '300vh' }}
+      style={{ minHeight: '250vh' }}
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center">
-        <div className="max-w-7xl mx-auto px-6 mb-16">
+      <div className="sticky top-0 h-screen flex flex-col justify-center pb-16">
+        <div className="max-w-7xl mx-auto px-6 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -259,7 +259,7 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-16 px-6"
+          className="text-center mt-12 px-6"
         >
           <p className="text-muted-foreground text-sm md:text-base tracking-wider">
             SCROLL TO EXPLORE MORE TESTIMONIALS
