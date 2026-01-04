@@ -148,20 +148,8 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 2.8, repeat: Infinity, repeatType: 'reverse' }}
-            className="mb-12 md:mb-16 z-[20] relative"
-          >
-            <div className="flex flex-col items-center gap-2 text-white/50">
-              <span className="text-xs tracking-[0.2em] uppercase font-bold">Scroll</span>
-              <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 2.3 }}
-            className="grid grid-cols-3 gap-6 md:gap-12 mb-0 max-w-2xl mx-auto border-t border-white/10 pt-8 md:pt-12 px-4"
+            className="grid grid-cols-3 gap-6 md:gap-12 mb-16 md:mb-20 max-w-2xl mx-auto border-t border-white/10 pt-8 md:pt-12 px-4"
           >
             {[
               { number: '500+', label: 'Projects' },
@@ -184,10 +172,22 @@ export function Hero() {
               </motion.div>
             ))}
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 2.8, repeat: Infinity, repeatType: 'reverse' }}
+            className="mb-0 z-[25] relative"
+          >
+            <div className="flex flex-col items-center gap-2 text-white/50">
+              <span className="text-xs tracking-[0.2em] uppercase font-bold">Scroll</span>
+              <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary via-primary to-transparent z-[15] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent z-[15] pointer-events-none" />
     </section>
   )
 }
