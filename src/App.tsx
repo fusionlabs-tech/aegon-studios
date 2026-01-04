@@ -4,6 +4,7 @@ import { Portfolio } from '@/components/Portfolio'
 import { Services } from '@/components/Services'
 import { About } from '@/components/About'
 import { Clients } from '@/components/Clients'
+import { Testimonials } from '@/components/Testimonials'
 import { Contact } from '@/components/Contact'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { motion } from 'framer-motion'
@@ -23,6 +24,7 @@ function App() {
       <Services />
       <About />
       <Clients />
+      <Testimonials />
       <Contact />
     </motion.div>
   )
