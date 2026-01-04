@@ -94,14 +94,26 @@ export function Portfolio() {
   useEffect(() => {
     if (!containerRef.current) return
 
-    const items = portfolioData.length
-    const scrollHeight = items * window.innerHeight
+    const stickyContent = containerRef.current.querySelector('.sticky-content')
+    if (!stickyContent) return
+
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: stickyContent,
+      pinSpacing: false,
+      anticipatePin: 1,
+    })
 
     portfolioData.forEach((_, index) => {
+      const progress = index / portfolioData.length
+      const nextProgress = (index + 1) / portfolioData.length
+      
       ScrollTrigger.create({
         trigger: containerRef.current,
-        start: `top+${index * window.innerHeight} top`,
-        end: `top+${(index + 1) * window.innerHeight} top`,
+        start: `top+=${progress * (portfolioData.length - 1) * 100}% top`,
+        end: `top+=${nextProgress * (portfolioData.length - 1) * 100}% top`,
         onEnter: () => setActiveIndex(index),
         onEnterBack: () => setActiveIndex(index),
       })
@@ -122,7 +134,7 @@ export function Portfolio() {
           style={{ height: `${portfolioData.length * 100}vh` }}
           className="relative"
         >
-          <div className="sticky top-0 h-screen w-full overflow-hidden">
+          <div className="sticky-content sticky top-0 h-screen w-full overflow-hidden">
             <div className="absolute inset-0 grid lg:grid-cols-2 gap-0">
               <motion.div
                 key={activeIndex}
