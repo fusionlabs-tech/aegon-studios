@@ -77,6 +77,33 @@ const testimonials: Testimonial[] = [
     content: 'Aegon Studios captured our restaurant\'s atmosphere and culinary excellence perfectly. The food photography is mouthwatering, and the interior shots showcase our ambiance beautifully. We were fully booked for months after the campaign launched.',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=90',
     rating: 5
+  },
+  {
+    id: 8,
+    name: 'Robert Hayes',
+    role: 'Founder',
+    company: 'Urban Beats Records',
+    content: 'The music video production from Aegon Studios elevated our artists to a new level. Their creative vision combined with technical expertise resulted in visuals that perfectly matched the energy of the music. The views and engagement speak for themselves.',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&q=90',
+    rating: 5
+  },
+  {
+    id: 9,
+    name: 'Nina Patel',
+    role: 'VP of Marketing',
+    company: 'Summit Financial Group',
+    content: 'Aegon Studios transformed our corporate communication strategy. They made financial services feel human and approachable through stunning visuals and authentic storytelling. Our client engagement has increased dramatically since the campaign launch.',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=90',
+    rating: 5
+  },
+  {
+    id: 10,
+    name: 'James Morrison',
+    role: 'Event Producer',
+    company: 'Prime Events International',
+    content: 'We\'ve worked with countless production companies, but Aegon Studios stands out. Their ability to capture the energy and emotion of live events is unparalleled. The highlight reels they produce become marketing gold for our future events.',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&q=90',
+    rating: 5
   }
 ]
 
@@ -101,9 +128,14 @@ export function Testimonials() {
         return
       }
 
-      const scrollableRange = sectionHeight + viewportHeight
-      const scrolled = viewportHeight - sectionTop
-      const progress = Math.max(0, Math.min(1, scrolled / scrollableRange))
+      if (sectionTop > 0) {
+        setScrollProgress(0)
+        return
+      }
+
+      const scrollableDistance = sectionHeight - viewportHeight
+      const scrolled = Math.abs(sectionTop)
+      const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance))
 
       setScrollProgress(progress)
     }
@@ -114,118 +146,126 @@ export function Testimonials() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollX = scrollProgress * 100
+  const totalCards = testimonials.length
+  const cardWidth = 600 + 32
+  const totalWidth = cardWidth * totalCards
+  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200
+  const maxScroll = totalWidth - viewportWidth
+  const scrollX = (scrollProgress * maxScroll) / cardWidth * 100
 
   return (
     <section 
       ref={sectionRef}
       className="relative py-32 bg-background overflow-hidden"
+      style={{ minHeight: '300vh' }}
     >
-      <div className="max-w-7xl mx-auto px-6 mb-16">
+      <div className="sticky top-0 h-screen flex flex-col justify-center">
+        <div className="max-w-7xl mx-auto px-6 mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <Star weight="fill" size={32} className="text-foreground" />
+              <Star weight="fill" size={32} className="text-foreground" />
+              <Star weight="fill" size={32} className="text-foreground" />
+              <Star weight="fill" size={32} className="text-foreground" />
+              <Star weight="fill" size={32} className="text-foreground" />
+            </div>
+            <h2 className="text-[clamp(3rem,8vw,7rem)] leading-none font-bold tracking-tight font-display text-foreground mb-6">
+              CLIENT LOVE
+            </h2>
+            <p className="text-muted-foreground text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+              Hear from the brands and creators who trust us to bring their vision to life
+            </p>
+          </motion.div>
+        </div>
+
+        <div className="relative">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          </motion.div>
+
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-8 px-6 py-4"
+            style={{
+              transform: `translateX(-${scrollX}%)`,
+              transition: 'transform 0.1s linear'
+            }}
+          >
+            {testimonials.map((testimonial) => (
+              <motion.div
+                key={testimonial.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.6 }}
+                className="flex-shrink-0 w-[90vw] md:w-[500px] lg:w-[600px]"
+              >
+                <Card className="h-full border-2 border-border bg-card hover:border-foreground/20 transition-all duration-300 hover:shadow-2xl group">
+                  <CardContent className="p-8 md:p-10 flex flex-col h-full">
+                    <div className="mb-6">
+                      <Quotes weight="fill" size={48} className="text-primary opacity-20 group-hover:opacity-40 transition-opacity" />
+                    </div>
+
+                    <div className="flex gap-1 mb-6">
+                      {Array.from({ length: testimonial.rating }).map((_, i) => (
+                        <Star key={i} weight="fill" size={20} className="text-primary" />
+                      ))}
+                    </div>
+
+                    <p className="text-foreground text-lg md:text-xl leading-relaxed mb-8 flex-grow">
+                      "{testimonial.content}"
+                    </p>
+
+                    <div className="flex items-center gap-4 pt-6 border-t border-border">
+                      <Avatar className="w-14 h-14 md:w-16 md:h-16 ring-2 ring-primary/10">
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                        <AvatarFallback className="text-lg font-bold bg-primary text-primary-foreground">
+                          {testimonial.name.split(' ').map(n => n[0]).join('')}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <div className="text-foreground font-bold text-lg md:text-xl">
+                          {testimonial.name}
+                        </div>
+                        <div className="text-muted-foreground text-sm md:text-base">
+                          {testimonial.role}
+                        </div>
+                        <div className="text-muted-foreground text-xs md:text-sm font-semibold tracking-wider">
+                          {testimonial.company}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center mt-16 px-6"
         >
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Star weight="fill" size={32} className="text-foreground" />
-            <Star weight="fill" size={32} className="text-foreground" />
-            <Star weight="fill" size={32} className="text-foreground" />
-            <Star weight="fill" size={32} className="text-foreground" />
-            <Star weight="fill" size={32} className="text-foreground" />
-          </div>
-          <h2 className="text-[clamp(3rem,8vw,7rem)] leading-none font-bold tracking-tight font-display text-foreground mb-6">
-            CLIENT LOVE
-          </h2>
-          <p className="text-muted-foreground text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
-            Hear from the brands and creators who trust us to bring their vision to life
+          <p className="text-muted-foreground text-sm md:text-base tracking-wider">
+            SCROLL TO EXPLORE MORE TESTIMONIALS
           </p>
         </motion.div>
       </div>
-
-      <div className="relative">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        </motion.div>
-
-        <div 
-          ref={scrollContainerRef}
-          className="flex gap-8 px-6 py-4"
-          style={{
-            transform: `translateX(-${scrollX}%)`,
-            transition: 'transform 0.1s linear'
-          }}
-        >
-          {testimonials.map((testimonial) => (
-            <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "0px" }}
-              transition={{ duration: 0.6 }}
-              className="flex-shrink-0 w-[90vw] md:w-[500px] lg:w-[600px]"
-            >
-              <Card className="h-full border-2 border-border bg-card hover:border-foreground/20 transition-all duration-300 hover:shadow-2xl group">
-                <CardContent className="p-8 md:p-10 flex flex-col h-full">
-                  <div className="mb-6">
-                    <Quotes weight="fill" size={48} className="text-primary opacity-20 group-hover:opacity-40 transition-opacity" />
-                  </div>
-
-                  <div className="flex gap-1 mb-6">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} weight="fill" size={20} className="text-primary" />
-                    ))}
-                  </div>
-
-                  <p className="text-foreground text-lg md:text-xl leading-relaxed mb-8 flex-grow">
-                    "{testimonial.content}"
-                  </p>
-
-                  <div className="flex items-center gap-4 pt-6 border-t border-border">
-                    <Avatar className="w-14 h-14 md:w-16 md:h-16 ring-2 ring-primary/10">
-                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                      <AvatarFallback className="text-lg font-bold bg-primary text-primary-foreground">
-                        {testimonial.name.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="text-foreground font-bold text-lg md:text-xl">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-muted-foreground text-sm md:text-base">
-                        {testimonial.role}
-                      </div>
-                      <div className="text-muted-foreground text-xs md:text-sm font-semibold tracking-wider">
-                        {testimonial.company}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="text-center mt-16 px-6"
-      >
-        <p className="text-muted-foreground text-sm md:text-base tracking-wider">
-          SCROLL TO EXPLORE MORE TESTIMONIALS
-        </p>
-      </motion.div>
     </section>
   )
 }
