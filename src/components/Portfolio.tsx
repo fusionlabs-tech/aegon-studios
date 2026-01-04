@@ -180,7 +180,7 @@ export function Portfolio() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }}
-                className="flex flex-col justify-center w-full lg:w-[45%] max-h-[60vh] overflow-y-auto"
+                className="flex flex-col justify-center w-full lg:w-[45%] max-h-[60vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-6"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -254,7 +254,7 @@ export function Portfolio() {
                     </div>
                   </div>
 
-                  <div className="mb-6">
+                  <div className="mb-6 hidden md:block">
                     <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-3">
                       THE CHALLENGE
                     </div>
@@ -263,7 +263,7 @@ export function Portfolio() {
                     </p>
                   </div>
 
-                  <div className="mb-8">
+                  <div className="mb-8 hidden md:block">
                     <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-3">
                       THE RESULT
                     </div>
@@ -275,7 +275,7 @@ export function Portfolio() {
                   <Button
                     onClick={() => setSelectedWork(activeWork)}
                     size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider text-base px-6 py-5 group w-full lg:w-auto"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider text-base px-6 py-5 group w-full lg:w-auto mb-2"
                   >
                     VIEW FULL CASE STUDY
                     <ArrowRight weight="bold" size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
