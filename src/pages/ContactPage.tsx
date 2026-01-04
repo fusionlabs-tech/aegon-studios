@@ -58,8 +58,8 @@ export function ContactPage() {
                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase">Offices</span>
               </div>
               <div>
-                <p className="text-[10px] font-bold tracking-widest opacity-40 uppercase mb-2">Los Angeles</p>
-                <p className="text-2xl font-bold">Arts District, CA</p>
+                <p className="text-[10px] font-bold tracking-widest opacity-40 uppercase mb-2">Lagos</p>
+                <p className="text-2xl font-bold">Victoria Island</p>
               </div>
               <div>
                 <p className="text-[10px] font-bold tracking-widest opacity-40 uppercase mb-2">New York</p>

@@ -43,7 +43,7 @@ export function AboutPage() {
               <span className="stroke-text">STORYTELLING</span>
             </h1>
             <p className="reveal-text text-2xl md:text-4xl text-foreground/60 leading-tight tracking-normal max-w-2xl">
-              Aegon Studios is a collective of <span className="text-foreground font-bold">cinematic visionaries</span> based in Los Angeles, dedicated to crafting high-fidelity narratives for global icons.
+              Aegon Studios is a collective of <span className="text-foreground font-bold">cinematic visionaries</span> based in Lagos, Nigeria, dedicated to crafting high-fidelity narratives for global icons.
             </p>
           </div>
         </div>

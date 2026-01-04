@@ -21,7 +21,7 @@ export const archiveData: ArchiveItem[] = [
     category: 'Photography',
     image: '/images/urban_nights.png',
     description: 'A striking fashion photography campaign that captured the essence of luxury streetwear in urban landscapes.',
-    longDescription: 'Urban Nights was a high-concept fashion photography campaign designed for Luxe Street Apparel. The objective was to blend the gritty textures of downtown Los Angeles with the high-fidelity finish of luxury streetwear. We spent three nights shooting in the Arts District, utilizing available street lighting as our primary atmosphere and augmenting with portable cinema lights to create a hyper-real aesthetic.',
+    longDescription: 'Urban Nights was a high-concept fashion photography campaign designed for Luxe Street Apparel. The objective was to blend the gritty textures of downtown Lagos with the high-fidelity finish of luxury streetwear. We spent three nights shooting in Victoria Island, utilizing available street lighting as our primary atmosphere and augmenting with portable cinema lights to create a hyper-real aesthetic.',
     client: 'Luxe Street Apparel',
     year: getCurrentYear(),
     services: ['Art Direction', 'Fashion Photography', 'Post-Production', 'Color Grading'],
@@ -29,7 +29,7 @@ export const archiveData: ArchiveItem[] = [
       'Director': 'Aegon V',
       'Photography': 'Marcus Chen',
       'Styling': 'Sarah Rose',
-      'Location': 'Arts District, LA'
+      'Location': 'Victoria Island, Lagos'
     },
     gallery: ['/images/urban_nights.png', '/images/studio_session.png', '/images/tech_launch.png']
   },

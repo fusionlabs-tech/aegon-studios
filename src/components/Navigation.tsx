@@ -112,6 +112,27 @@ export function Navigation() {
       </motion.nav>
 
       <AnimatePresence>
+        {!isVisible && isScrolled && (
+          <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+            className="fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-8 bg-background/10 backdrop-blur-md border border-border py-8 px-3 rounded-l-2xl shadow-xl"
+          >
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                to={link.path}
+                className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40 hover:opacity-100 transition-opacity [writing-mode:vertical-rl] rotate-180 hover:text-foreground"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -161,7 +182,7 @@ export function Navigation() {
               </div>
               <div>
                 <p className="text-[10px] font-bold tracking-widest opacity-30 uppercase mb-4">Location</p>
-                <p className="font-bold">Los Angeles, CA</p>
+                <p className="font-bold">Lagos, Nigeria</p>
               </div>
             </div>
           </motion.div>

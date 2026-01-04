@@ -1,6 +1,6 @@
 # Aegon Studios - Premium Media Portfolio
 
-A high-fidelity, cinematic portfolio website for Aegon Studios, a Los Angeles-based media production collective.
+A high-fidelity, cinematic portfolio website for Aegon Studios, a Lagos, Nigeria-based media production collective.
 
 ## Technology Stack
 

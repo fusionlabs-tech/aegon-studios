@@ -96,7 +96,7 @@ export function Contact() {
                 </div>
                 <div>
                   <div className="text-xs font-bold tracking-widest opacity-40 uppercase mb-1">Studio</div>
-                  <div className="text-xl font-semibold">Los Angeles, CA</div>
+                  <div className="text-xl font-semibold">Lagos, Nigeria</div>
                 </div>
               </div>
             </div>
