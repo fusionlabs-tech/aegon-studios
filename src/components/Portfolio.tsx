@@ -120,7 +120,7 @@ export function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center pt-12 pb-6"
+          className="text-center py-8"
         >
           <h2 className="text-[clamp(2.5rem,5vw,4rem)] leading-none font-bold tracking-tight font-display text-foreground">
             CASE STUDIES

@@ -122,7 +122,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 2 }}
-            className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 justify-center items-center px-4"
+            className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 justify-center items-center px-4 mb-16 md:mb-20"
           >
             <motion.button
               onClick={scrollToShowreel}
@@ -148,8 +148,20 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 2.8, repeat: Infinity, repeatType: 'reverse' }}
+            className="mb-12 md:mb-16 z-[20] relative"
+          >
+            <div className="flex flex-col items-center gap-2 text-white/50">
+              <span className="text-xs tracking-[0.2em] uppercase font-bold">Scroll</span>
+              <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 2.3 }}
-            className="grid grid-cols-3 gap-6 md:gap-12 mt-16 md:mt-24 mb-12 md:mb-16 max-w-2xl mx-auto border-t border-white/10 pt-8 md:pt-12 px-4"
+            className="grid grid-cols-3 gap-6 md:gap-12 mb-0 max-w-2xl mx-auto border-t border-white/10 pt-8 md:pt-12 px-4"
           >
             {[
               { number: '500+', label: 'Projects' },
@@ -163,7 +175,7 @@ export function Hero() {
                 transition={{ duration: 0.6, delay: 2.5 + index * 0.15 }}
                 className="text-center"
               >
-                <div className="text-3xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-1 drop-shadow-lg">
+                <div className="text-3xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-2 drop-shadow-lg">
                   {stat.number}
                 </div>
                 <div className="text-xs md:text-sm text-white/60 font-medium tracking-[0.15em] uppercase">
@@ -174,18 +186,6 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2.8, repeat: Infinity, repeatType: 'reverse' }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[20]"
-      >
-        <div className="flex flex-col items-center gap-2 text-white/50">
-          <span className="text-xs tracking-[0.2em] uppercase font-bold">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
-        </div>
-      </motion.div>
 
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary via-primary to-transparent z-[15] pointer-events-none" />
     </section>

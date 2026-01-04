@@ -151,9 +151,9 @@ export function Showreel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center py-12 flex items-center justify-center"
+          className="text-center py-8 flex items-center justify-center"
         >
-          <h2 className="text-[clamp(3rem,8vw,7rem)] leading-none font-bold tracking-tight font-display text-foreground">
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] leading-none font-bold tracking-tight font-display text-foreground">
             SHOWREEL
           </h2>
         </motion.div>
