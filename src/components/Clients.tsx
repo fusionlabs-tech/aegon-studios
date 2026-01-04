@@ -27,13 +27,22 @@ export function Clients() {
     const marquee = marqueeRef.current
     const items = marquee.querySelectorAll('.marquee-item')
     const itemWidth = items[0]?.getBoundingClientRect().width || 0
-    const totalWidth = itemWidth * items.length
+    const gap = 64
+    const totalWidth = (itemWidth + gap) * clients.length
+
+    gsap.set(marquee, { x: 0 })
 
     gsap.to(marquee, {
       x: -totalWidth,
       duration: 30,
       ease: 'none',
       repeat: -1,
+      modifiers: {
+        x: (x) => {
+          const position = parseFloat(x)
+          return `${position % totalWidth}px`
+        }
+      }
     })
   }, [])
 
@@ -73,8 +82,8 @@ export function Clients() {
           </motion.div>
           
           <div className="flex overflow-hidden">
-            <div ref={marqueeRef} className="flex gap-16 pr-16">
-              {[...clients, ...clients].map((client, index) => (
+            <div ref={marqueeRef} className="flex gap-16">
+              {[...clients, ...clients, ...clients].map((client, index) => (
                 <div
                   key={index}
                   className="marquee-item flex-shrink-0 text-primary-foreground/50 hover:text-primary-foreground transition-colors duration-300"
