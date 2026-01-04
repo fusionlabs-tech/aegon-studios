@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Calendar, Tag } from '@phosphor-icons/react'
+import { ZigzagDivider } from '@/components/ZigzagDivider'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -113,6 +114,21 @@ export function Portfolio() {
 
   return (
     <>
+      <div className="bg-background">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center pt-20 pb-8"
+        >
+          <h2 className="text-[clamp(3rem,8vw,7rem)] leading-none font-bold tracking-tight font-display text-foreground">
+            CASE STUDIES
+          </h2>
+        </motion.div>
+        <ZigzagDivider color="hsl(var(--foreground))" />
+      </div>
+
       <section id="portfolio" className="relative bg-background">
         <div ref={containerRef} className="relative">
           <div ref={stickyRef} className="h-screen w-full overflow-hidden">
