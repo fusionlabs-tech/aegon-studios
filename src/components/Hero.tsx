@@ -149,7 +149,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 2.3 }}
-            className="grid grid-cols-3 gap-6 md:gap-12 mt-16 md:mt-24 max-w-2xl mx-auto border-t border-white/10 pt-8 md:pt-12 px-4"
+            className="grid grid-cols-3 gap-6 md:gap-12 mt-16 md:mt-24 mb-12 md:mb-16 max-w-2xl mx-auto border-t border-white/10 pt-8 md:pt-12 px-4"
           >
             {[
               { number: '500+', label: 'Projects' },

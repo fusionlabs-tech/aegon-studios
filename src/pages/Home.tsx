@@ -10,9 +10,9 @@ export function Home() {
     <>
       <Hero />
       <Showreel />
+      <Testimonials />
       <Portfolio />
       <Clients />
-      <Testimonials />
       <Contact />
     </>
   )
