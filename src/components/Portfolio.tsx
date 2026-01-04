@@ -76,39 +76,31 @@ const featuredPortfolioData: PortfolioItem[] = [
 
 export function Portfolio() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const stickyRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [selectedWork, setSelectedWork] = useState<PortfolioItem | null>(null)
   const [showAllProjects, setShowAllProjects] = useState(false)
 
   useEffect(() => {
-    if (!containerRef.current) return
-
-    const stickyContent = containerRef.current.querySelector('.sticky-content')
-    if (!stickyContent) return
+    if (!containerRef.current || !stickyRef.current) return
 
     const numWorks = featuredPortfolioData.length
-    const scrollHeight = containerRef.current.clientHeight
-
+    
     ScrollTrigger.create({
       trigger: containerRef.current,
       start: 'top top',
-      end: 'bottom bottom',
-      pin: stickyContent,
-      pinSpacing: false,
+      end: `+=${(numWorks - 1) * window.innerHeight}`,
+      pin: stickyRef.current,
+      pinSpacing: true,
       anticipatePin: 1,
-    })
-
-    featuredPortfolioData.forEach((_, index) => {
-      const segmentHeight = scrollHeight / numWorks
-      
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: `top-=${index * segmentHeight} top`,
-        end: `top-=${(index + 1) * segmentHeight} top`,
-        onEnter: () => setActiveIndex(index),
-        onEnterBack: () => setActiveIndex(index),
-        scrub: true,
-      })
+      onUpdate: (self) => {
+        const progress = self.progress
+        const newIndex = Math.min(
+          Math.floor(progress * numWorks),
+          numWorks - 1
+        )
+        setActiveIndex(newIndex)
+      }
     })
 
     return () => {
@@ -121,12 +113,8 @@ export function Portfolio() {
   return (
     <>
       <section id="portfolio" className="relative bg-background">
-        <div
-          ref={containerRef}
-          style={{ height: `${featuredPortfolioData.length * 100}vh` }}
-          className="relative"
-        >
-          <div className="sticky-content sticky top-0 h-screen w-full overflow-hidden">
+        <div ref={containerRef} className="relative">
+          <div ref={stickyRef} className="h-screen w-full overflow-hidden">
             <div className="absolute inset-0 grid lg:grid-cols-2 gap-0">
               <motion.div
                 key={activeIndex}
@@ -161,10 +149,10 @@ export function Portfolio() {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="absolute top-8 left-8 z-10"
                 >
-                  <div className="text-white/60 font-display text-lg md:text-xl tracking-[0.3em] mb-3">
+                  <div className="text-white/70 font-display text-xl md:text-2xl tracking-[0.3em] mb-4 font-bold">
                     CASE STUDY
                   </div>
-                  <div className="text-white font-display text-7xl md:text-9xl lg:text-[10rem] font-bold tracking-tight leading-none">
+                  <div className="text-white font-display text-[8rem] md:text-[12rem] lg:text-[14rem] xl:text-[16rem] font-bold tracking-tight leading-none drop-shadow-2xl">
                     {String(activeIndex + 1).padStart(2, '0')}
                   </div>
                 </motion.div>
@@ -175,22 +163,22 @@ export function Portfolio() {
                   transition={{ duration: 0.8, delay: 0.5 }}
                   className="absolute bottom-8 left-8 right-8 lg:hidden"
                 >
-                  <Badge className="mb-4 bg-white text-primary border-0 font-semibold tracking-wider">
+                  <Badge className="mb-4 bg-white text-primary border-0 font-semibold tracking-wider text-xs">
                     {activeWork.category.toUpperCase()}
                   </Badge>
-                  <h3 className="text-5xl md:text-6xl font-display font-bold text-white mb-3 leading-tight">
+                  <h3 className="text-6xl md:text-7xl font-display font-bold text-white mb-4 leading-tight">
                     {activeWork.title}
                   </h3>
-                  <p className="text-white/80 text-base md:text-lg mb-4 max-w-lg">
+                  <p className="text-white/90 text-lg md:text-xl mb-6 max-w-lg leading-relaxed">
                     {activeWork.description}
                   </p>
                   <Button
                     onClick={() => setSelectedWork(activeWork)}
                     size="lg"
-                    className="bg-white text-primary hover:bg-white/90 font-bold tracking-wider"
+                    className="bg-white text-primary hover:bg-white/90 font-bold tracking-wider px-6 py-6 text-base"
                   >
                     VIEW CASE STUDY
-                    <ArrowRight weight="bold" className="ml-2" />
+                    <ArrowRight weight="bold" className="ml-2" size={20} />
                   </Button>
                 </motion.div>
               </motion.div>
@@ -211,45 +199,45 @@ export function Portfolio() {
                     {activeWork.category.toUpperCase()}
                   </Badge>
                   
-                  <h3 className="text-7xl xl:text-8xl font-display font-bold text-foreground mb-6 leading-none">
+                  <h3 className="text-7xl xl:text-9xl 2xl:text-[10rem] font-display font-bold text-foreground mb-6 leading-none">
                     {activeWork.title}
                   </h3>
                   
-                  <p className="text-muted-foreground text-lg xl:text-xl mb-8 leading-relaxed max-w-xl">
+                  <p className="text-muted-foreground text-xl xl:text-2xl mb-10 leading-relaxed max-w-2xl">
                     {activeWork.description}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-6 mb-8 pb-8 border-b border-border">
+                  <div className="grid grid-cols-2 gap-8 mb-10 pb-10 border-b border-border">
                     <div>
                       <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
                         <Tag weight="bold" size={16} />
-                        <span className="font-semibold tracking-wider">CLIENT</span>
+                        <span className="font-semibold tracking-wider text-xs">CLIENT</span>
                       </div>
-                      <div className="text-foreground font-semibold text-lg">
+                      <div className="text-foreground font-semibold text-xl">
                         {activeWork.client}
                       </div>
                     </div>
                     <div>
                       <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
                         <Calendar weight="bold" size={16} />
-                        <span className="font-semibold tracking-wider">YEAR</span>
+                        <span className="font-semibold tracking-wider text-xs">YEAR</span>
                       </div>
-                      <div className="text-foreground font-semibold text-lg">
+                      <div className="text-foreground font-semibold text-xl">
                         {activeWork.year}
                       </div>
                     </div>
                   </div>
 
-                  <div className="mb-8">
-                    <div className="text-sm font-semibold tracking-wider text-muted-foreground mb-3">
+                  <div className="mb-10">
+                    <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-4">
                       SERVICES
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-3">
                       {activeWork.services.map((service, idx) => (
                         <Badge
                           key={idx}
                           variant="outline"
-                          className="px-4 py-2 text-sm border-border"
+                          className="px-5 py-2.5 text-base border-border font-medium"
                         >
                           {service}
                         </Badge>
@@ -257,20 +245,20 @@ export function Portfolio() {
                     </div>
                   </div>
 
-                  <div className="mb-8">
-                    <div className="text-sm font-semibold tracking-wider text-muted-foreground mb-3">
+                  <div className="mb-10">
+                    <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-4">
                       THE CHALLENGE
                     </div>
-                    <p className="text-foreground leading-relaxed">
+                    <p className="text-foreground leading-relaxed text-lg">
                       {activeWork.challenge}
                     </p>
                   </div>
 
-                  <div className="mb-10">
-                    <div className="text-sm font-semibold tracking-wider text-muted-foreground mb-3">
+                  <div className="mb-12">
+                    <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground mb-4">
                       THE RESULT
                     </div>
-                    <p className="text-foreground font-semibold leading-relaxed">
+                    <p className="text-foreground font-semibold leading-relaxed text-lg">
                       {activeWork.result}
                     </p>
                   </div>
@@ -278,10 +266,10 @@ export function Portfolio() {
                   <Button
                     onClick={() => setSelectedWork(activeWork)}
                     size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider group"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider text-base px-8 py-6 group"
                   >
                     VIEW FULL CASE STUDY
-                    <ArrowRight weight="bold" className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight weight="bold" size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </motion.div>
               </motion.div>
@@ -292,7 +280,12 @@ export function Portfolio() {
                 <button
                   key={index}
                   onClick={() => {
-                    const targetScroll = containerRef.current!.offsetTop + (index * window.innerHeight)
+                    if (!containerRef.current) return
+                    const containerTop = containerRef.current.offsetTop
+                    const scrollProgress = index / (featuredPortfolioData.length - 1)
+                    const totalPinDistance = (featuredPortfolioData.length - 1) * window.innerHeight
+                    const targetScroll = containerTop + (scrollProgress * totalPinDistance)
+                    
                     window.scrollTo({
                       top: targetScroll,
                       behavior: 'smooth'
