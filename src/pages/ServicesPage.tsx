@@ -269,6 +269,7 @@ export function ServicesPage() {
           <div className="max-w-7xl mx-auto space-y-24">
             {services.map((service, index) => {
               const Icon = service.icon
+              const isEven = index % 2 === 0
               
               return (
                 <motion.div
@@ -278,7 +279,7 @@ export function ServicesPage() {
                   onMouseLeave={() => setHoveredService(null)}
                 >
                   <div className="grid lg:grid-cols-2 gap-12 items-start">
-                    <div className="space-y-8">
+                    <div className={`space-y-8 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                       <div className="flex items-start gap-6">
                         <motion.div 
                           whileHover={{ scale: 1.1, rotate: 5 }}
@@ -347,7 +348,7 @@ export function ServicesPage() {
                       </div>
                     </div>
 
-                    <div className="lg:sticky lg:top-32">
+                    <div className={`lg:sticky lg:top-32 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: hoveredService === index ? 1 : 0.4 }}

@@ -157,7 +157,7 @@ export function Testimonials() {
     <section 
       ref={sectionRef}
       className="relative py-32 bg-background overflow-hidden"
-      style={{ minHeight: '250vh' }}
+      style={{ minHeight: '200vh' }}
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center pb-16">
         <div className="max-w-7xl mx-auto px-6 mb-12">
