@@ -1,18 +1,15 @@
-import { Hero } from '@/components/Hero'
-import { Showreel } from '@/components/Showreel'
-import { Portfolio } from '@/components/Portfolio'
-import { Services } from '@/components/Services'
-import { About } from '@/components/About'
-import { Clients } from '@/components/Clients'
-import { Testimonials } from '@/components/Testimonials'
-import { Contact } from '@/components/Contact'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Navigation } from '@/components/Navigation'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { Toaster } from '@/components/ui/sonner'
+import { Home } from '@/pages/Home'
+import { ServicesPage } from '@/pages/ServicesPage'
+import { AboutPage } from '@/pages/AboutPage'
 import { motion } from 'framer-motion'
 
 function App() {
   return (
-    <>
+    <Router>
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -20,17 +17,15 @@ function App() {
         className="relative"
       >
         <ScrollProgress />
-        <Hero />
-        <Showreel />
-        <Portfolio />
-        <Services />
-        <About />
-        <Clients />
-        <Testimonials />
-        <Contact />
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
       </motion.div>
       <Toaster />
-    </>
+    </Router>
   )
 }
 
