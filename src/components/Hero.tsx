@@ -1,193 +1,160 @@
 import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import gsap from 'gsap'
-import { ArrowDown, Play } from '@phosphor-icons/react'
+import { ArrowDown, Play, ArrowRight } from '@phosphor-icons/react'
+import { ShowreelLightbox } from './ShowreelLightbox'
+import Magnetic from './ui/magnetic'
+import { getCurrentYear } from '@/utils/date'
 
 export function Hero() {
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const subtitleRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const title1Ref = useRef<HTMLSpanElement>(null)
+  const title2Ref = useRef<HTMLSpanElement>(null)
   
+  const { scrollY } = useScroll()
+  const y1 = useTransform(scrollY, [0, 500], [0, -100])
+  const y2 = useTransform(scrollY, [0, 500], [0, 100])
+  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+
   useEffect(() => {
-    if (!titleRef.current) return
-    
-    const letters = titleRef.current.querySelectorAll('.letter')
-    
-    gsap.fromTo(
-      letters,
-      { 
-        opacity: 0, 
-        y: 150, 
-        rotateX: -90,
-        scale: 0.8,
-        filter: 'blur(20px)',
-      },
-      {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        scale: 1,
-        filter: 'blur(0px)',
-        duration: 1.8,
-        stagger: 0.05,
-        ease: 'power4.out',
-        delay: 0.3,
-      }
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+    // Left Column Animations
+    tl.fromTo('.hero-badge', 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: 1, delay: 0.5 }
+    )
+    .fromTo('.hero-desc',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 1 },
+      "-=0.8"
+    )
+    .fromTo('.hero-cta', 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: 1 }, 
+      "-=0.8"
+    )
+    .fromTo('.hero-stat',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 },
+      "-=0.8"
     )
 
-    if (subtitleRef.current) {
-      gsap.fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, delay: 2, ease: 'power3.out' }
-      )
-    }
+    // Right Column Title Animation (Cinematic Reveal)
+    tl.fromTo('.hero-title',
+      { x: -100, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1.5, ease: "power4.out" },
+      0.5 // Start at same time as badge
+    )
+    .fromTo('.hero-subtitle',
+      { x: -50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1.5, ease: "power4.out" },
+      "-=1.2"
+    )
   }, [])
 
-  const scrollToShowreel = () => {
-    document.getElementById('showreel')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[oklch(0.10_0_0)]" />
+    <section 
+      ref={containerRef}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-40"
+    >
+      {/* Background Cinematic Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-foreground/5 rounded-full blur-[160px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-foreground/5 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: '2s' }} />
         
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 3px),
-            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 3px)
-          `
+        {/* Abstract Lines */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `linear-gradient(to right, var(--foreground) 1px, transparent 1px), linear-gradient(to bottom, var(--foreground) 1px, transparent 1px)`,
+          backgroundSize: '100px 100px'
         }} />
-        
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/3 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/3 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
-      
-      <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 relative z-10 w-full max-w-full overflow-hidden pt-24 md:pt-32">
-        <div className="flex flex-col items-center justify-center text-center max-w-full">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-8 md:mb-12"
-          >
-            <div className="inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
-              <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
-              <span className="text-xs md:text-sm font-bold tracking-[0.2em] text-white uppercase">Premium Media Production</span>
-            </div>
-          </motion.div>
 
-          <h1
-            ref={titleRef}
-            className="stroke-text text-[clamp(4rem,15vw,28rem)] leading-[0.85] font-bold tracking-[-0.02em] font-display px-4 sm:px-6 md:px-8 w-full"
-            style={{ perspective: '1000px', wordBreak: 'keep-all' }}
-          >
-            {'AEGON'.split('').map((letter, i) => (
-              <span 
-                key={i} 
-                className="letter inline-block" 
-                style={{ 
-                  display: 'inline-block',
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                {letter}
+      <motion.div 
+        style={{ opacity }}
+        className="container mx-auto px-6 relative z-10 flex flex-col items-center justify-center min-h-[80vh] text-center"
+      >
+        {/* Top: Monumental Title */}
+        <div className="flex flex-col items-center mb-12 relative overflow-hidden">
+           <div className="relative z-10">
+             <div className="overflow-hidden">
+              <span className="hero-title block text-[clamp(5rem,15vw,18rem)] leading-[0.8] font-sans font-thin tracking-tighter text-foreground">
+                AEGON
               </span>
-            ))}
-            <br />
-            {'STUDIOS'.split('').map((letter, i) => (
-              <span 
-                key={i + 5} 
-                className="letter inline-block" 
-                style={{ 
-                  display: 'inline-block',
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                {letter}
+             </div>
+             <div className="overflow-hidden">
+              <span className="hero-subtitle block text-[clamp(1.5rem,4vw,4rem)] leading-none font-bold tracking-[0.6em] opacity-20">
+                STUDIOS
               </span>
-            ))}
-          </h1>
+             </div>
+           </div>
+        </div>
 
-          <div 
-            ref={subtitleRef}
-            className="max-w-2xl mx-auto mt-6 md:mt-8 mb-8 md:mb-12 px-4"
-          >
-            <p className="text-lg md:text-2xl text-white/80 font-light leading-relaxed tracking-wide">
-              Crafting <span className="font-semibold text-white">cinematic stories</span> through photography, videography, and immersive experiences
+        {/* Middle: Content */}
+        <div className="flex flex-col items-center max-w-3xl">
+          <div className="mb-8 overflow-hidden">
+             <motion.div className="hero-badge flex items-center gap-3 px-4 py-1.5 rounded-full border border-border bg-foreground/5 backdrop-blur-sm w-fit">
+              <span className="w-2 h-2 rounded-full bg-foreground animate-ping" />
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">Aegon Studios &copy; {getCurrentYear()}</span>
+            </motion.div>
+          </div>
+
+          <div className="mb-12 overflow-hidden">
+            <p className="hero-desc text-xl md:text-3xl opacity-80 font-light leading-relaxed tracking-wide">
+              Crafting <span className="font-medium">cinematic narratives</span> for the world's most ambitious brands.
             </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2 }}
-            className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 justify-center items-center px-4 mb-16 md:mb-20"
-          >
-            <motion.button
-              onClick={scrollToShowreel}
-              className="group inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-white text-primary rounded-full font-bold tracking-[0.15em] hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 text-sm md:text-base w-full sm:w-auto justify-center"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Play weight="fill" size={20} />
-              WATCH SHOWREEL
-            </motion.button>
+          <div className="hero-cta flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
+            <ShowreelLightbox>
+              <Magnetic>
+                <button className="group relative flex items-center gap-4 px-10 py-5 bg-foreground text-background font-bold tracking-widest text-sm rounded-none overflow-hidden transition-all duration-500 active:scale-95">
+                  <span className="relative z-10 flex items-center gap-3">
+                    <Play weight="fill" /> WATCH SHOWREEL
+                  </span>
+                </button>
+              </Magnetic>
+            </ShowreelLightbox>
 
-            <motion.button
-              onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-white/10 text-white border border-white/30 backdrop-blur-sm rounded-full font-bold tracking-[0.15em] hover:bg-white hover:text-primary hover:border-white transition-all duration-300 text-sm md:text-base w-full sm:w-auto justify-center"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              VIEW OUR WORK
-              <ArrowDown weight="bold" size={20} className="group-hover:translate-y-1 transition-transform" />
-            </motion.button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 2.3 }}
-            className="grid grid-cols-3 gap-6 md:gap-12 mb-16 md:mb-20 max-w-2xl mx-auto border-t border-white/10 pt-8 md:pt-12 px-4"
-          >
-            {[
-              { number: '500+', label: 'Projects' },
-              { number: '150+', label: 'Clients' },
-              { number: '8+', label: 'Years' }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 2.5 + index * 0.15 }}
-                className="text-center"
+            <Magnetic>
+              <button 
+                onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group flex items-center gap-3 px-6 py-5 opacity-60 hover:opacity-100 font-bold tracking-widest text-sm transition-opacity"
               >
-                <div className="text-3xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-2 drop-shadow-lg">
-                  {stat.number}
-                </div>
-                <div className="text-xs md:text-sm text-white/60 font-medium tracking-[0.15em] uppercase">
-                  {stat.label}
-                </div>
-              </motion.div>
+                EXPLORE WORK <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Magnetic>
+          </div>
+
+          {/* Bottom: Stats */}
+          <div className="flex flex-wrap justify-center gap-12 md:gap-24">
+            {[
+              { label: 'PROJECTS', value: '500+' },
+              { label: 'CLIENTS', value: '150+' },
+              { label: 'AWARDS', value: '12' }
+            ].map((stat, i) => (
+              <div key={i} className="hero-stat flex flex-col items-center">
+                <span className="text-xs font-bold tracking-widest opacity-30 mb-2 uppercase">{stat.label}</span>
+                <span className="text-4xl font-display font-bold transition-colors duration-500">{stat.value}</span>
+              </div>
             ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 2.8, repeat: Infinity, repeatType: 'reverse' }}
-            className="mb-0 z-[25] relative"
-          >
-            <div className="flex flex-col items-center gap-2 text-white/50">
-              <span className="text-xs tracking-[0.2em] uppercase font-bold">Scroll</span>
-              <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
-            </div>
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent z-[15] pointer-events-none" />
+      {/* Floating Stats */}
+
+
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.5, duration: 1 }}
+        className="absolute bottom-12 flex flex-col items-center gap-4 group cursor-pointer"
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+      >
+        <span className="text-[10px] font-bold tracking-[0.4em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">SCROLL TO EXPLORE</span>
+        <div className="w-[1px] h-16 bg-gradient-to-b from-foreground/20 to-transparent group-hover:from-foreground transition-colors" />
+      </motion.div>
     </section>
   )
 }

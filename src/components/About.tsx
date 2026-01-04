@@ -7,9 +7,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 const stats = [
   { value: '500+', label: 'Projects Completed' },
-  { value: '150+', label: 'Happy Clients' },
-  { value: '8+', label: 'Years Experience' },
-  { value: '15+', label: 'Awards Won' }
+  { value: '150+', label: 'Visionary Clients' },
+  { value: '12', label: 'Global Awards' },
+  { value: '∞', label: 'Artistic Pursuit' }
 ]
 
 export function About() {
@@ -47,9 +47,9 @@ export function About() {
       transition={{ duration: 1, ease: "easeOut" }}
       className="py-24 bg-background relative overflow-hidden"
     >
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, oklch(0.15 0 0) 1px, transparent 0)`
+          backgroundImage: `radial-gradient(circle at 2px 2px, var(--foreground) 1px, transparent 0)`
         }} />
       </div>
 
@@ -102,13 +102,13 @@ export function About() {
                   delay: 0.4 + index * 0.1,
                   ease: "backOut"
                 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="stat-item text-center p-8 rounded-2xl bg-secondary/50 backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-500 hover:shadow-xl"
+                 whileHover={{ scale: 1.05, y: -5 }}
+                className="stat-item text-center p-8 bg-card backdrop-blur-sm border border-border group transition-all duration-500 hover:shadow-xl hover:border-foreground/20"
               >
-                <div className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold text-primary mb-2">
+                <div className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
+                <div className="text-[10px] font-bold tracking-[0.3em] opacity-40 uppercase">
                   {stat.label}
                 </div>
               </motion.div>

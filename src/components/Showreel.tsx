@@ -6,6 +6,7 @@ import { Play, Pause, SpeakerHigh, SpeakerSlash, Camera, VideoCamera, Microphone
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ZigzagDivider } from '@/components/ZigzagDivider'
+import { getCurrentYear } from '@/utils/date'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -154,15 +155,15 @@ export function Showreel() {
           className="text-center py-4 md:py-6"
         >
           <div className="flex items-center justify-center gap-2 md:gap-3 mb-4">
-            <FilmSlate weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
-            <FilmSlate weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
-            <FilmSlate weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+            <FilmSlate weight="fill" size={24} className="opacity-40" />
+            <FilmSlate weight="fill" size={24} className="opacity-40" />
+            <FilmSlate weight="fill" size={24} className="opacity-40" />
           </div>
-          <h2 className="text-[clamp(2.5rem,5vw,4rem)] leading-none font-bold tracking-tight font-display text-foreground">
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] leading-none font-bold tracking-tight font-display">
             SHOWREEL
           </h2>
         </motion.div>
-        <ZigzagDivider color="hsl(var(--foreground))" />
+        <ZigzagDivider color="var(--foreground)" />
       </div>
       
       <motion.section
@@ -214,7 +215,7 @@ export function Showreel() {
                 <span className="relative h-2 w-2 rounded-full bg-white" />
               </div>
               <span className="text-sm font-bold tracking-widest text-white uppercase">
-                Showreel 2024
+                Showreel {getCurrentYear()}
               </span>
             </div>
           </motion.div>

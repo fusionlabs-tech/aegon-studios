@@ -118,13 +118,13 @@ export function Services() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
           >
-            <div className="text-muted-foreground font-semibold tracking-[0.3em] mb-6 text-sm">
+            <div className="opacity-40 font-bold tracking-[0.3em] mb-6 text-xs uppercase">
               WHAT WE OFFER
             </div>
             <h2 className="text-[clamp(4rem,12vw,10rem)] leading-none font-bold tracking-tight font-display mb-8">
               SERVICES
             </h2>
-            <p className="text-muted-foreground text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+            <p className="opacity-50 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
               Comprehensive media production services tailored to bring your creative vision to life
             </p>
           </motion.div>
@@ -143,29 +143,29 @@ export function Services() {
                 <div className={`grid md:grid-cols-12 gap-8 items-center ${isEven ? '' : 'md:grid-flow-dense'}`}>
                   <div className={`md:col-span-2 ${isEven ? '' : 'md:col-start-11 md:text-right'}`}>
                     <motion.div 
-                      className="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-primary/5 group-hover:bg-primary transition-all duration-700 group-hover:scale-110 group-hover:rotate-6"
+                      className="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-foreground/5 group-hover:bg-foreground transition-all duration-700 group-hover:scale-110"
                     >
                       <Icon 
                         size={48} 
                         weight="duotone" 
-                        className="text-primary group-hover:text-primary-foreground transition-colors duration-700"
+                        className="text-foreground group-hover:text-background transition-colors duration-700"
                       />
                     </motion.div>
                   </div>
 
                   <div className={`md:col-span-8 ${isEven ? 'md:col-start-3' : 'md:col-start-3 md:text-right'}`}>
                     <motion.div className="space-y-4">
-                      <div className="flex items-baseline gap-4 justify-start">
-                        <span className="text-[8rem] md:text-[12rem] font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary/20 to-primary/5 leading-none group-hover:from-primary/40 group-hover:to-primary/20 transition-all duration-700">
+                      <div className={`flex items-baseline gap-4 ${isEven ? 'justify-start' : 'justify-end'}`}>
+                        <span className="text-[8rem] md:text-[12rem] font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-foreground/20 to-foreground/5 leading-none transition-all duration-700">
                           {service.number}
                         </span>
                       </div>
                       
-                      <h3 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-foreground leading-none tracking-tight group-hover:text-primary transition-colors duration-500">
+                      <h3 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-foreground leading-none tracking-tight transition-colors duration-500">
                         {service.title}
                       </h3>
                       
-                      <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl leading-relaxed max-w-3xl">
+                      <p className="opacity-40 text-lg md:text-xl lg:text-2xl leading-relaxed max-w-3xl">
                         {service.description}
                       </p>
                     </motion.div>
@@ -173,7 +173,7 @@ export function Services() {
                 </div>
 
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                  className="absolute inset-0 bg-gradient-to-r from-foreground/0 via-foreground/2 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
                   initial={false}
                 />
               </motion.div>

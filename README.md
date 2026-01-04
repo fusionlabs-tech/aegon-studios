@@ -1,23 +1,29 @@
-# ✨ Welcome to Your Spark Template!
-You've just launched your brand-new Spark Template Codespace — everything’s fired up and ready for you to explore, build, and create with Spark!
+# Aegon Studios - Premium Media Portfolio
 
-This template is your blank canvas. It comes with a minimal setup to help you get started quickly with Spark development.
+A high-fidelity, cinematic portfolio website for Aegon Studios, a Los Angeles-based media production collective.
 
-🚀 What's Inside?
-- A clean, minimal Spark environment
-- Pre-configured for local development
-- Ready to scale with your ideas
-  
-🧠 What Can You Do?
+## Technology Stack
 
-Right now, this is just a starting point — the perfect place to begin building and testing your Spark applications.
+- **Framework**: React + Vite
+- **Styling**: Tailwind CSS v4 (using OKLCH color space)
+- **Animations**: Framer Motion + GSAP
+- **Icons**: Phosphor Icons
 
-🧹 Just Exploring?
-No problem! If you were just checking things out and don’t need to keep this code:
+## Features
 
-- Simply delete your Spark.
-- Everything will be cleaned up — no traces left behind.
+- **Dual Theme System**: Persistent Light/Dark modes with cinematic editorial styling.
+- **Showreel Lightbox**: Immersive, full-screen video player.
+- **Project Archive**: Filterable portfolio grid with masonry layout.
+- **Premium Interactions**: Magnetic buttons, noise textures, and smooth page transitions.
 
-📄 License For Spark Template Resources 
+## Development
 
-The Spark Template files and resources from GitHub are licensed under the terms of the MIT license, Copyright GitHub, Inc.
+Run the development server:
+
+```bash
+npm run dev
+```
+
+## Credits
+
+Designed and built for Aegon Studios.

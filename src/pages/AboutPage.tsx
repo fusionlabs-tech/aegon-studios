@@ -1,536 +1,139 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { 
-  Target, 
-  Lightbulb, 
   Users, 
   Trophy, 
-  Heart, 
-  Rocket,
-  CheckCircle,
-  ArrowRight
+  Globe,
+  Strategy,
+  Eye,
+  MicrophoneStage,
+  FilmSlate
 } from '@phosphor-icons/react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
-import { toast } from 'sonner'
-
-gsap.registerPlugin(ScrollTrigger)
-
-const stats = [
-  { value: '500+', label: 'Projects Completed' },
-  { value: '150+', label: 'Happy Clients' },
-  { value: '8+', label: 'Years Experience' },
-  { value: '15+', label: 'Awards Won' }
-]
-
-const values = [
-  {
-    icon: Target,
-    title: 'Excellence',
-    description: 'We pursue perfection in every frame, every edit, every project. Our commitment to quality is unwavering, ensuring that each piece of content we create meets the highest standards of professional production.'
-  },
-  {
-    icon: Lightbulb,
-    title: 'Innovation',
-    description: 'We stay ahead of industry trends, constantly exploring new techniques, technologies, and creative approaches. Innovation drives us to push boundaries and deliver content that stands out in a crowded digital landscape.'
-  },
-  {
-    icon: Users,
-    title: 'Collaboration',
-    description: 'Great work is born from great partnerships. We believe in working closely with our clients, treating every project as a collaborative journey where your vision and our expertise combine to create something extraordinary.'
-  },
-  {
-    icon: Heart,
-    title: 'Authenticity',
-    description: 'We create content that feels genuine and resonates with real people. Every story we tell is rooted in authenticity, capturing the true essence of brands, moments, and experiences without artifice or pretense.'
-  },
-  {
-    icon: Trophy,
-    title: 'Results',
-    description: 'Beautiful content is just the beginning—we focus on creating work that drives real results for our clients. From brand awareness to audience engagement, we measure success by the impact our content creates.'
-  },
-  {
-    icon: Rocket,
-    title: 'Growth',
-    description: 'We grow with our clients, adapting and scaling our services to meet evolving needs. As your business expands, we\'re there to ensure your visual content grows in sophistication, reach, and effectiveness.'
-  }
-]
-
-const teamMembers = [
-  {
-    role: 'Creative Direction',
-    description: 'Visionaries who conceptualize and guide every project from inception to completion, ensuring creative excellence and brand alignment.',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop&q=90',
-    name: 'Alex Carter'
-  },
-  {
-    role: 'Cinematography',
-    description: 'Skilled operators behind the lens, crafting stunning visuals with cinema-grade equipment and an eye for compelling composition.',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&h=600&fit=crop&q=90',
-    name: 'Marcus Rivera'
-  },
-  {
-    role: 'Post-Production',
-    description: 'Expert editors and colorists who transform raw footage into polished, professional content that captivates audiences.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop&q=90',
-    name: 'Sophie Chen'
-  },
-  {
-    role: 'Audio Production',
-    description: 'Sound engineers and designers who ensure every project has crystal-clear audio and immersive soundscapes.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&q=90',
-    name: 'David Thomson'
-  },
-  {
-    role: 'Production Management',
-    description: 'Coordinators who handle logistics, scheduling, and client communication to ensure seamless project execution.',
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500&h=600&fit=crop&q=90',
-    name: 'Emma Williams'
-  },
-  {
-    role: 'Creative Strategy',
-    description: 'Strategists who develop content plans that align with brand objectives and resonate with target audiences.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=600&fit=crop&q=90',
-    name: 'Ryan Mitchell'
-  }
-]
-
-const capabilities = [
-  'Full-Service Production House',
-  'State-of-the-Art Studio Facility',
-  'Cinema-Grade Equipment',
-  'Professional Editing Suites',
-  'Color Grading & VFX',
-  'Sound Design & Mixing',
-  'Multi-Camera Productions',
-  'Drone Cinematography',
-  'Live Streaming Services',
-  '24/7 Client Support',
-  'Global Project Delivery',
-  'End-to-End Content Solutions'
-]
+import { Contact } from '@/components/Contact'
 
 export function AboutPage() {
-  const statsRef = useRef<HTMLDivElement>(null)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    
+    const ctx = gsap.context(() => {
+      gsap.from('.reveal-text', {
+        y: 100,
+        opacity: 0,
+        skewY: 7,
+        duration: 1.5,
+        stagger: 0.2,
+        ease: 'power4.out'
+      })
+    }, containerRef)
 
-    if (!statsRef.current) return
-
-    const statItems = statsRef.current.querySelectorAll('.stat-item')
-
-    gsap.fromTo(
-      statItems,
-      { opacity: 0, scale: 0.8 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'back.out(1.7)',
-        scrollTrigger: {
-          trigger: statsRef.current,
-          start: 'top 75%',
-        }
-      }
-    )
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    }
+    return () => ctx.revert()
   }, [])
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    await new Promise(resolve => setTimeout(resolve, 1500))
-
-    toast.success('Thank you for reaching out! We\'ll be in touch soon.')
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    })
-    setIsSubmitting(false)
-  }
-
   return (
-    <div className="min-h-screen bg-background">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="pt-32 pb-16 bg-gradient-to-b from-primary/5 to-background"
-      >
+    <div ref={containerRef} className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="pt-40 pb-24 border-b border-border">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="text-muted-foreground font-semibold tracking-[0.3em] mb-6 text-sm">
-              WHO WE ARE
-            </div>
-            <h1 className="text-[clamp(4rem,12vw,10rem)] leading-none font-bold tracking-tight font-display mb-8">
-              ABOUT US
+          <div className="max-w-4xl">
+            <h1 className="text-[clamp(4rem,15vw,12rem)] leading-[0.8] font-bold mb-12 animate-title">
+              BEYOND <br />
+              <span className="stroke-text">STORYTELLING</span>
             </h1>
-            <p className="text-muted-foreground text-xl md:text-2xl leading-relaxed">
-              A collective of visual storytellers passionate about transforming brands and moments into unforgettable experiences
+            <p className="reveal-text text-2xl md:text-4xl text-foreground/60 leading-tight tracking-normal max-w-2xl">
+              Aegon Studios is a collective of <span className="text-foreground font-bold">cinematic visionaries</span> based in Los Angeles, dedicated to crafting high-fidelity narratives for global icons.
             </p>
-          </motion.div>
-        </div>
-      </motion.div>
-
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8 text-lg md:text-xl leading-relaxed text-muted-foreground"
-            >
-              <p className="text-2xl md:text-3xl font-semibold text-foreground leading-tight">
-                We are Aegon Studios—where creativity meets technical excellence, and every project becomes a masterpiece.
-              </p>
-              
-              <p>
-                Founded on the belief that exceptional visual content has the power to transform brands, inspire audiences, and create lasting impact, we've built a production house that combines cinematic artistry with cutting-edge technology. Our studio is more than just a facility—it's a creative playground where ideas come to life.
-              </p>
-              
-              <p>
-                Based at the intersection of innovation and storytelling, we've spent years perfecting our craft across photography, videography, event coverage, podcast production, and comprehensive brand content creation. Every member of our team brings specialized expertise, unwavering dedication, and a genuine passion for visual storytelling.
-              </p>
-              
-              <p>
-                From intimate studio sessions to large-scale commercial productions, from fast-paced event coverage to meticulously planned brand campaigns, we approach each project with the same commitment to excellence. We don't just capture images and footage—we craft visual narratives that connect with audiences on an emotional level, driving engagement and delivering measurable results.
-              </p>
-              
-              <p>
-                Our approach is collaborative and client-focused. We take the time to understand your vision, your brand, your audience, and your objectives. This deep understanding informs every creative decision we make, ensuring that the final product not only meets but exceeds your expectations.
-              </p>
-              
-              <p className="text-2xl md:text-3xl font-semibold text-foreground leading-tight">
-                We believe great content is born from the perfect blend of technical mastery, creative vision, and authentic storytelling.
-              </p>
-            </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-secondary/20">
+      {/* Manifesto Section */}
+      <section className="py-32 border-b border-border bg-foreground/2">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-[clamp(3rem,8vw,6rem)] leading-none font-bold tracking-tight font-display mb-6">
-              BY THE NUMBERS
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our track record speaks to our commitment to excellence and client satisfaction
-            </p>
-          </motion.div>
-
-          <motion.div
-            ref={statsRef}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: index * 0.1,
-                  ease: "backOut"
-                }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="stat-item text-center p-8 rounded-2xl bg-background backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-500 hover:shadow-xl"
-              >
-                <div className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold text-primary mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-[clamp(3rem,8vw,6rem)] leading-none font-bold tracking-tight font-display mb-6">
-              OUR VALUES
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              The principles that guide every project we undertake
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {values.map((value, index) => {
-              const Icon = value.icon
-              return (
-                <motion.div
-                  key={value.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -8 }}
-                  className="p-8 rounded-2xl bg-secondary/30 border-2 border-border hover:border-primary transition-all duration-500 group"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-500"
-                  >
-                    <Icon size={32} weight="duotone" className="text-primary group-hover:text-primary-foreground transition-colors duration-500" />
-                  </motion.div>
-                  <h3 className="text-2xl font-display font-bold mb-4 group-hover:text-primary transition-colors">
-                    {value.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {value.description}
-                  </p>
-                </motion.div>
-              )
-            })}
+          <div className="grid lg:grid-cols-2 gap-24 items-start">
+            <div>
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase opacity-40 mb-8 block">Our Philosophy</span>
+              <h2 className="text-5xl font-bold mb-8">THE PURSUIT OF <br />VISUAL PERFECTION</h2>
+            </div>
+            <div className="space-y-8 text-xl text-foreground/50 leading-relaxed">
+              <p>
+                We don't just capture moments; we architect emotions. Founded in 2016, Aegon Studios emerged from a desire to bridge the gap between commercial efficiency and cinematic artistry.
+              </p>
+              <p>
+                Every project we undertake is governed by a singular principle: <span className="text-foreground font-bold">Absolute Precision.</span> From the way light falls on a product to the subtle pacing of a final cut, we believe that world-class stories are told in the details.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-b from-background to-secondary/20">
+      {/* Authority Grid */}
+      <section className="py-32 border-b border-border">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-[clamp(3rem,8vw,6rem)] leading-none font-bold tracking-tight font-display mb-6">
-              OUR TEAM
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Diverse specialists working together to deliver exceptional results
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.role}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="group rounded-2xl bg-background border-2 border-border hover:border-primary transition-all duration-300 overflow-hidden"
-              >
-                <div className="relative aspect-[3/4] overflow-hidden">
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-display font-bold text-white mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-white/90 font-semibold text-sm tracking-wide">
-                      {member.role}
-                    </p>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {member.description}
-                  </p>
-                </div>
-              </motion.div>
+          <div className="grid md:grid-cols-3 gap-0 border border-border">
+            {[
+              { icon: FilmSlate, label: 'PRODUCTION', value: '500+ Projects', desc: 'A vast portfolio of cinematic work spanning commercials, film, and digital media.' },
+              { icon: Users, label: 'PARTNERSHIPS', value: '150+ Clients', desc: 'Trusted by global industry leaders and visionary independent creators.' },
+              { icon: Trophy, label: 'RECOGNITION', value: '12 Global Awards', desc: 'Honored internationally for excellence in storytelling and visual craft.' }
+            ].map((stat, i) => (
+              <div key={i} className="p-12 border-b md:border-b-0 md:border-r border-border group hover:bg-foreground/5 transition-colors">
+                <stat.icon size={40} weight="thin" className="mb-8 opacity-20 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+                <div className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-40">{stat.label}</div>
+                <div className="text-4xl font-display font-bold mb-4">{stat.value}</div>
+                <p className="opacity-30 text-sm leading-relaxed">{stat.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-secondary/20">
+      {/* Principles */}
+      <section className="py-32 bg-background overflow-hidden relative border-b border-border">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-[clamp(3rem,8vw,6rem)] leading-none font-bold tracking-tight font-display mb-6">
-              CAPABILITIES
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Everything you need for world-class content production
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            {capabilities.map((capability, index) => (
-              <motion.div
-                key={capability}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="flex items-center gap-3 p-4 rounded-lg bg-background border border-border hover:border-primary transition-colors"
-              >
-                <CheckCircle size={24} weight="fill" className="text-primary flex-shrink-0" />
-                <span className="font-semibold">{capability}</span>
-              </motion.div>
+          <h2 className="text-center text-[clamp(2.5rem,8vw,6rem)] leading-[0.8] font-bold mb-24 stroke-text opacity-20">
+            CORE PRINCIPLES
+          </h2>
+          <div className="grid lg:grid-cols-2 gap-12">
+            {[
+              { title: 'RADICAL HONESTY', desc: 'We believe the most powerful stories are the truest ones. We cut through the noise with raw, authentic imagery.', icon: Eye },
+              { title: 'STRATEGIC DEPTH', desc: 'Every frame must serve a purpose. We combine artistic intuition with brand strategy to deliver measurable impact.', icon: Strategy },
+              { title: 'CULTURAL IMPACT', desc: 'We don\'t follow trends; we create the visuals that define them for years to come.', icon: MicrophoneStage }
+            ].map((p, i) => (
+              <div key={i} className={`p-16 border border-border bg-foreground/2 hover:border-foreground/20 transition-all ${i === 2 ? 'lg:col-span-2' : ''}`}>
+                 <p.icon size={32} weight="thin" className="mb-8 opacity-40" />
+                 <h3 className="text-4xl font-bold mb-6">{p.title}</h3>
+                 <p className="opacity-40 leading-relaxed max-w-xl">{p.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="py-24 bg-background"
-      >
+      {/* Team Visual Bridge */}
+      <section className="py-24 border-b border-border">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-[clamp(3rem,8vw,6rem)] leading-none font-bold tracking-tight font-display mb-6">
-                GET IN TOUCH
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Let's discuss how we can help bring your vision to life
-              </p>
-            </motion.div>
-
-            <motion.form
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              onSubmit={handleSubmit}
-              className="space-y-6 bg-secondary/30 border-2 border-border rounded-3xl p-8 md:p-12"
-            >
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-base font-semibold">Full Name</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="John Doe"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    className="h-12 text-base"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-base font-semibold">Email Address</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                    className="h-12 text-base"
-                  />
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-base font-semibold">Phone Number</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+1 (555) 000-0000"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="h-12 text-base"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-base font-semibold">Subject</Label>
-                  <Input
-                    id="subject"
-                    type="text"
-                    placeholder="General Inquiry, Partnership, etc."
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="h-12 text-base"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message" className="text-base font-semibold">Message</Label>
-                <Textarea
-                  id="message"
-                  placeholder="Tell us what's on your mind..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  rows={6}
-                  className="text-base resize-none"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full h-14 text-lg font-bold tracking-wide group"
-              >
-                {isSubmitting ? (
-                  'Sending...'
-                ) : (
-                  <>
-                    Send Message
-                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                  </>
-                )}
-              </Button>
-            </motion.form>
-          </div>
+           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+             {[
+               '/images/studio_session.png',
+               '/images/urban_nights.png',
+               '/images/tech_launch.png',
+               '/images/podcast_setup.png'
+             ].map((img, i) => (
+               <div key={i} className="aspect-[3/4] overflow-hidden group">
+                 <img 
+                   src={img} 
+                   className="w-full h-full object-cover grayscale opacity-30 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" 
+                   alt="Team"
+                 />
+               </div>
+             ))}
+           </div>
         </div>
-      </motion.section>
+      </section>
+
+      <Contact />
     </div>
   )
 }

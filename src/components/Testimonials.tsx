@@ -171,16 +171,16 @@ export function Testimonials() {
               className="text-center"
             >
               <div className="flex items-center justify-center gap-2 md:gap-3 mb-4">
-                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
-                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
-                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
-                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
-                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+                <Star weight="fill" size={24} className="opacity-40" />
+                <Star weight="fill" size={24} className="opacity-40" />
+                <Star weight="fill" size={24} className="opacity-40" />
+                <Star weight="fill" size={24} className="opacity-40" />
+                <Star weight="fill" size={24} className="opacity-40" />
               </div>
-              <h3 className="text-[clamp(2.5rem,6vw,5rem)] leading-none font-bold tracking-tight font-display text-foreground mb-4">
+              <h3 className="text-[clamp(2.5rem,6vw,5rem)] leading-none font-bold tracking-tight font-display mb-4">
                 CLIENT LOVE
               </h3>
-              <p className="text-muted-foreground text-base md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
+              <p className="opacity-40 text-base md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
                 Hear from the brands and creators who trust us to bring their vision to life
               </p>
             </motion.div>
@@ -217,23 +217,23 @@ export function Testimonials() {
                   <Card className="h-full border-2 border-border bg-card hover:border-foreground/20 transition-all duration-300 hover:shadow-2xl group">
                     <CardContent className="p-8 md:p-10 flex flex-col h-full">
                       <div className="mb-6">
-                        <Quotes weight="fill" size={48} className="text-primary opacity-20 group-hover:opacity-40 transition-opacity" />
+                        <Quotes weight="fill" size={48} className="opacity-10 group-hover:opacity-20 transition-opacity" />
                       </div>
 
                       <div className="flex gap-1 mb-6">
                         {Array.from({ length: testimonial.rating }).map((_, i) => (
-                          <Star key={i} weight="fill" size={20} className="text-primary" />
+                          <Star key={i} weight="fill" size={20} className="opacity-60" />
                         ))}
                       </div>
 
-                      <p className="text-foreground text-lg md:text-xl leading-relaxed mb-8 flex-grow">
+                      <p className="text-lg md:text-xl leading-relaxed mb-8 flex-grow italic opacity-80">
                         "{testimonial.content}"
                       </p>
 
                       <div className="flex items-center gap-4 pt-6 border-t border-border">
-                        <Avatar className="w-14 h-14 md:w-16 md:h-16 ring-2 ring-primary/10">
+                        <Avatar className="w-14 h-14 md:w-16 md:h-16 ring-1 ring-border">
                           <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                          <AvatarFallback className="text-lg font-bold bg-primary text-primary-foreground">
+                          <AvatarFallback className="text-lg font-bold bg-foreground text-background">
                             {testimonial.name.split(' ').map(n => n[0]).join('')}
                           </AvatarFallback>
                         </Avatar>
@@ -241,10 +241,10 @@ export function Testimonials() {
                           <div className="text-foreground font-bold text-lg md:text-xl">
                             {testimonial.name}
                           </div>
-                          <div className="text-muted-foreground text-sm md:text-base">
+                          <div className="opacity-50 text-sm md:text-base">
                             {testimonial.role}
                           </div>
-                          <div className="text-muted-foreground text-xs md:text-sm font-semibold tracking-wider">
+                          <div className="opacity-40 text-xs md:text-sm font-bold tracking-wider uppercase">
                             {testimonial.company}
                           </div>
                         </div>
@@ -263,7 +263,7 @@ export function Testimonials() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-center mt-12 px-6"
           >
-            <p className="text-muted-foreground text-sm md:text-base tracking-wider">
+            <p className="opacity-20 text-xs md:text-sm font-bold tracking-[0.3em] uppercase">
               SCROLL TO EXPLORE MORE TESTIMONIALS
             </p>
           </motion.div>
