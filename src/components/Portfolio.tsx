@@ -125,22 +125,6 @@ export function Portfolio() {
           <h2 className="text-[clamp(3rem,8vw,7rem)] leading-none font-bold tracking-tight font-display text-foreground">
             CASE STUDIES
           </h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-8"
-          >
-            <Button
-              onClick={() => setShowAllProjects(true)}
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider text-base px-8 py-6 group"
-            >
-              VIEW ALL PROJECTS
-              <ArrowRight weight="bold" className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-            </Button>
-          </motion.div>
         </motion.div>
         <ZigzagDivider color="hsl(var(--foreground))" />
       </div>
@@ -203,6 +187,23 @@ export function Portfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="mb-6"
+                  >
+                    <Button
+                      onClick={() => setShowAllProjects(true)}
+                      size="lg"
+                      variant="outline"
+                      className="border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-bold tracking-wider text-sm px-6 py-5 group"
+                    >
+                      VIEW ALL PROJECTS
+                      <ArrowRight weight="bold" className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                    </Button>
+                  </motion.div>
+
                   <Badge className="mb-4 bg-primary text-primary-foreground border-0 font-semibold tracking-wider text-sm">
                     {activeWork.category.toUpperCase()}
                   </Badge>
