@@ -179,7 +179,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2.8, repeat: Infinity, repeatType: 'reverse' }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[5]"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[20]"
       >
         <div className="flex flex-col items-center gap-2 text-white/50">
           <span className="text-xs tracking-[0.2em] uppercase font-bold">Scroll</span>
@@ -187,7 +187,7 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent z-[6] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary via-primary to-transparent z-[15] pointer-events-none" />
     </section>
   )
 }

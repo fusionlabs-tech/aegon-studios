@@ -151,7 +151,7 @@ export function Showreel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center pt-12 pb-6"
+          className="text-center py-12 flex items-center justify-center"
         >
           <h2 className="text-[clamp(3rem,8vw,7rem)] leading-none font-bold tracking-tight font-display text-foreground">
             SHOWREEL
