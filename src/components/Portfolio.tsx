@@ -125,6 +125,22 @@ export function Portfolio() {
           <h2 className="text-[clamp(3rem,8vw,7rem)] leading-none font-bold tracking-tight font-display text-foreground">
             CASE STUDIES
           </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-8"
+          >
+            <Button
+              onClick={() => setShowAllProjects(true)}
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider text-base px-8 py-6 group"
+            >
+              VIEW ALL PROJECTS
+              <ArrowRight weight="bold" className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+            </Button>
+          </motion.div>
         </motion.div>
         <ZigzagDivider color="hsl(var(--foreground))" />
       </div>
@@ -300,32 +316,6 @@ export function Portfolio() {
                 </button>
               ))}
             </div>
-          </div>
-        </div>
-
-        <div className="relative bg-background py-20 border-t border-border">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h3 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
-                Want to see more?
-              </h3>
-              <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-                Explore our complete portfolio of work across photography, video production, events, and brand campaigns.
-              </p>
-              <Button
-                onClick={() => setShowAllProjects(true)}
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider text-base px-8 py-6 group"
-              >
-                VIEW ALL PROJECTS
-                <ArrowRight weight="bold" className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-              </Button>
-            </motion.div>
           </div>
         </div>
       </section>
