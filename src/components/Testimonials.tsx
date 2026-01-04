@@ -161,8 +161,8 @@ export function Testimonials() {
         className="relative bg-background overflow-hidden"
         style={{ minHeight: '120vh' }}
       >
-        <div className="sticky top-0 h-screen flex flex-col justify-center pb-16">
-          <div className="max-w-7xl mx-auto px-6 mb-12">
+        <div className="sticky top-0 h-screen flex flex-col justify-center py-20">
+          <div className="max-w-7xl mx-auto px-6 mb-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -170,17 +170,17 @@ export function Testimonials() {
               transition={{ duration: 0.8 }}
               className="text-center"
             >
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <Star weight="fill" size={32} className="text-foreground" />
-                <Star weight="fill" size={32} className="text-foreground" />
-                <Star weight="fill" size={32} className="text-foreground" />
-                <Star weight="fill" size={32} className="text-foreground" />
-                <Star weight="fill" size={32} className="text-foreground" />
+              <div className="flex items-center justify-center gap-2 md:gap-3 mb-4">
+                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+                <Star weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
               </div>
-              <h3 className="text-[clamp(3rem,8vw,7rem)] leading-none font-bold tracking-tight font-display text-foreground mb-6">
+              <h3 className="text-[clamp(2.5rem,6vw,5rem)] leading-none font-bold tracking-tight font-display text-foreground mb-4">
                 CLIENT LOVE
               </h3>
-              <p className="text-muted-foreground text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+              <p className="text-muted-foreground text-base md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
                 Hear from the brands and creators who trust us to bring their vision to life
               </p>
             </motion.div>

@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Calendar, Tag } from '@phosphor-icons/react'
+import { ArrowRight, Calendar, Tag, Briefcase } from '@phosphor-icons/react'
 import { ZigzagDivider } from '@/components/ZigzagDivider'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -122,6 +122,11 @@ export function Portfolio() {
           transition={{ duration: 0.8 }}
           className="text-center py-4 md:py-6"
         >
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-4">
+            <Briefcase weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+            <Briefcase weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+            <Briefcase weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+          </div>
           <h2 className="text-[clamp(2.5rem,5vw,4rem)] leading-none font-bold tracking-tight font-display text-foreground">
             CASE STUDIES
           </h2>

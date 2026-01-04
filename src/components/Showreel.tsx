@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Play, Pause, SpeakerHigh, SpeakerSlash, Camera, VideoCamera, Microphone, Calendar } from '@phosphor-icons/react'
+import { Play, Pause, SpeakerHigh, SpeakerSlash, Camera, VideoCamera, Microphone, Calendar, FilmSlate } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ZigzagDivider } from '@/components/ZigzagDivider'
@@ -151,8 +151,13 @@ export function Showreel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center py-4 md:py-6 flex items-center justify-center"
+          className="text-center py-4 md:py-6"
         >
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-4">
+            <FilmSlate weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+            <FilmSlate weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+            <FilmSlate weight="fill" size={24} className="text-foreground md:w-8 md:h-8" />
+          </div>
           <h2 className="text-[clamp(2.5rem,5vw,4rem)] leading-none font-bold tracking-tight font-display text-foreground">
             SHOWREEL
           </h2>
