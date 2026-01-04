@@ -12,6 +12,8 @@ import { NotFoundPage } from '@/pages/NotFoundPage'
 import { useLocation } from 'react-router-dom'
 import { PageTransition } from '@/components/PageTransition'
 import { AnimatePresence } from 'framer-motion'
+import { TermsPage } from './pages/TermsPage'
+import { PrivacyPage } from './pages/PrivacyPage'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -49,6 +51,16 @@ function AnimatedRoutes() {
             <ProjectDetailPage />
           </PageTransition>
         } />
+        <Route path="/privacy" element={
+          <PageTransition>
+            <PrivacyPage />
+          </PageTransition>
+        } />
+        <Route path="/terms" element={
+          <PageTransition>
+            <TermsPage />
+          </PageTransition>
+        } />  
         <Route path="*" element={
           <PageTransition>
             <NotFoundPage />
