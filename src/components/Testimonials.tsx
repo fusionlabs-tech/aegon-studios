@@ -151,12 +151,12 @@ export function Testimonials() {
   const totalWidth = cardWidth * totalCards
   const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200
   const maxScroll = totalWidth - viewportWidth
-  const scrollX = (scrollProgress * maxScroll) / cardWidth * 100
+  const scrollX = (scrollProgress * maxScroll) / cardWidth * 40
 
   return (
     <section 
       ref={sectionRef}
-      className="relative py-32 bg-background overflow-hidden"
+      className="relative bg-background overflow-hidden"
       style={{ minHeight: '200vh' }}
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center pb-16">

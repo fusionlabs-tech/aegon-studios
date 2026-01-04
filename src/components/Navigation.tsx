@@ -37,7 +37,7 @@ export function Navigation() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
             ? 'bg-background/95 backdrop-blur-lg border-b border-border/50 shadow-lg'
-            : 'bg-transparent'
+            : 'bg-primary/80 backdrop-blur-md'
         }`}
       >
         <div className="container mx-auto px-6">
@@ -46,11 +46,15 @@ export function Navigation() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-2xl md:text-3xl font-display font-bold tracking-tight"
+                className={`text-2xl md:text-3xl font-display font-bold tracking-tight ${
+                  isScrolled ? 'text-foreground' : 'text-white'
+                }`}
               >
                 AEGON STUDIOS
               </motion.div>
-              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500" />
+              <div className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-500 ${
+                isScrolled ? 'bg-primary' : 'bg-white'
+              }`} />
             </Link>
 
             <div className="hidden md:flex items-center gap-2">
@@ -60,8 +64,12 @@ export function Navigation() {
                     variant={location.pathname === link.path ? 'default' : 'ghost'}
                     className={`text-base font-semibold tracking-wide transition-all duration-300 ${
                       location.pathname === link.path
-                        ? 'bg-primary text-primary-foreground'
-                        : 'hover:bg-primary/10'
+                        ? isScrolled 
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-white text-primary'
+                        : isScrolled
+                          ? 'text-foreground hover:bg-primary/10'
+                          : 'text-white hover:bg-white/10'
                     }`}
                   >
                     {link.name}
@@ -73,7 +81,9 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className={`md:hidden ${
+                isScrolled ? 'text-foreground' : 'text-white'
+              }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={28} /> : <List size={28} />}

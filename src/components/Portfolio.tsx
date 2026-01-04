@@ -89,10 +89,11 @@ export function Portfolio() {
     ScrollTrigger.create({
       trigger: containerRef.current,
       start: 'top top',
-      end: `+=${(numWorks - 1) * window.innerHeight}`,
+      end: `+=${(numWorks - 1) * window.innerHeight * 1.8}`,
       pin: stickyRef.current,
       pinSpacing: true,
       anticipatePin: 1,
+      scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress
         const newIndex = Math.min(
