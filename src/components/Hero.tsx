@@ -63,13 +63,13 @@ export function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/3 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
       
-      <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 relative z-10 w-full max-w-full overflow-hidden">
+      <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 relative z-10 w-full max-w-full overflow-hidden pt-24 md:pt-32">
         <div className="flex flex-col items-center justify-center text-center max-w-full">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-6 md:mb-8"
+            className="mb-8 md:mb-12"
           >
             <div className="inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
               <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
