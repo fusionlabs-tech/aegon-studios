@@ -23,7 +23,7 @@ export interface PortfolioItem {
   result: string
 }
 
-const portfolioData: PortfolioItem[] = [
+const featuredPortfolioData: PortfolioItem[] = [
   {
     id: 1,
     title: 'Urban Nights Campaign',
@@ -71,18 +71,6 @@ const portfolioData: PortfolioItem[] = [
     services: ['Podcast Recording', 'Audio Engineering', 'Video Production'],
     challenge: 'Create an intimate yet professional atmosphere for genuine conversations.',
     result: 'Top 10 business podcast with consistent weekly releases.'
-  },
-  {
-    id: 5,
-    title: 'Luxury Auto Campaign',
-    category: 'brand',
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&h=1200&fit=crop&q=90',
-    description: 'Complete brand visual identity development showcasing automotive excellence through photography and film.',
-    client: 'Prestige Motors',
-    year: '2023',
-    services: ['Brand Photography', 'Video Production', 'Creative Direction'],
-    challenge: 'Capture the essence of luxury and performance in every frame.',
-    result: 'Brand awareness increased by 250% in target demographics.'
   }
 ]
 
@@ -90,12 +78,16 @@ export function Portfolio() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [selectedWork, setSelectedWork] = useState<PortfolioItem | null>(null)
+  const [showAllProjects, setShowAllProjects] = useState(false)
 
   useEffect(() => {
     if (!containerRef.current) return
 
     const stickyContent = containerRef.current.querySelector('.sticky-content')
     if (!stickyContent) return
+
+    const numWorks = featuredPortfolioData.length
+    const scrollHeight = containerRef.current.clientHeight
 
     ScrollTrigger.create({
       trigger: containerRef.current,
@@ -106,16 +98,16 @@ export function Portfolio() {
       anticipatePin: 1,
     })
 
-    portfolioData.forEach((_, index) => {
-      const progress = index / portfolioData.length
-      const nextProgress = (index + 1) / portfolioData.length
+    featuredPortfolioData.forEach((_, index) => {
+      const segmentHeight = scrollHeight / numWorks
       
       ScrollTrigger.create({
         trigger: containerRef.current,
-        start: `top+=${progress * (portfolioData.length - 1) * 100}% top`,
-        end: `top+=${nextProgress * (portfolioData.length - 1) * 100}% top`,
+        start: `top-=${index * segmentHeight} top`,
+        end: `top-=${(index + 1) * segmentHeight} top`,
         onEnter: () => setActiveIndex(index),
         onEnterBack: () => setActiveIndex(index),
+        scrub: true,
       })
     })
 
@@ -124,14 +116,14 @@ export function Portfolio() {
     }
   }, [])
 
-  const activeWork = portfolioData[activeIndex]
+  const activeWork = featuredPortfolioData[activeIndex]
 
   return (
     <>
       <section id="portfolio" className="relative bg-background">
         <div
           ref={containerRef}
-          style={{ height: `${portfolioData.length * 100}vh` }}
+          style={{ height: `${featuredPortfolioData.length * 100}vh` }}
           className="relative"
         >
           <div className="sticky-content sticky top-0 h-screen w-full overflow-hidden">
@@ -169,10 +161,10 @@ export function Portfolio() {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="absolute top-8 left-8 z-10"
                 >
-                  <div className="text-white/40 font-display text-sm md:text-base tracking-[0.3em] mb-2">
+                  <div className="text-white/60 font-display text-lg md:text-xl tracking-[0.3em] mb-3">
                     CASE STUDY
                   </div>
-                  <div className="text-white font-display text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight">
+                  <div className="text-white font-display text-7xl md:text-9xl lg:text-[10rem] font-bold tracking-tight leading-none">
                     {String(activeIndex + 1).padStart(2, '0')}
                   </div>
                 </motion.div>
@@ -186,7 +178,7 @@ export function Portfolio() {
                   <Badge className="mb-4 bg-white text-primary border-0 font-semibold tracking-wider">
                     {activeWork.category.toUpperCase()}
                   </Badge>
-                  <h3 className="text-4xl md:text-5xl font-display font-bold text-white mb-3 leading-tight">
+                  <h3 className="text-5xl md:text-6xl font-display font-bold text-white mb-3 leading-tight">
                     {activeWork.title}
                   </h3>
                   <p className="text-white/80 text-base md:text-lg mb-4 max-w-lg">
@@ -219,7 +211,7 @@ export function Portfolio() {
                     {activeWork.category.toUpperCase()}
                   </Badge>
                   
-                  <h3 className="text-6xl xl:text-7xl font-display font-bold text-foreground mb-6 leading-tight">
+                  <h3 className="text-7xl xl:text-8xl font-display font-bold text-foreground mb-6 leading-none">
                     {activeWork.title}
                   </h3>
                   
@@ -296,12 +288,13 @@ export function Portfolio() {
             </div>
 
             <div className="absolute right-8 top-1/2 -translate-y-1/2 z-20 hidden xl:flex flex-col gap-3">
-              {portfolioData.map((_, index) => (
+              {featuredPortfolioData.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => {
+                    const targetScroll = containerRef.current!.offsetTop + (index * window.innerHeight)
                     window.scrollTo({
-                      top: containerRef.current!.offsetTop + (index * window.innerHeight),
+                      top: targetScroll,
                       behavior: 'smooth'
                     })
                   }}
@@ -316,7 +309,7 @@ export function Portfolio() {
                   />
                   <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     <div className="bg-primary text-primary-foreground px-3 py-1 rounded text-sm font-semibold">
-                      {portfolioData[index].title}
+                      {featuredPortfolioData[index].title}
                     </div>
                   </div>
                 </button>
@@ -324,10 +317,40 @@ export function Portfolio() {
             </div>
           </div>
         </div>
+
+        <div className="relative bg-background py-20 border-t border-border">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
+                Want to see more?
+              </h3>
+              <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+                Explore our complete portfolio of work across photography, video production, events, and brand campaigns.
+              </p>
+              <Button
+                onClick={() => setShowAllProjects(true)}
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wider text-base px-8 py-6 group"
+              >
+                VIEW ALL PROJECTS
+                <ArrowRight weight="bold" className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+              </Button>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       {selectedWork && (
         <WorkDetailsModal work={selectedWork} onClose={() => setSelectedWork(null)} />
+      )}
+
+      {showAllProjects && (
+        <AllProjectsModal onClose={() => setShowAllProjects(false)} />
       )}
     </>
   )
@@ -410,6 +433,138 @@ function WorkDetailsModal({ work, onClose }: { work: PortfolioItem; onClose: () 
                 </Badge>
               ))}
             </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+const allPortfolioData: PortfolioItem[] = [
+  ...featuredPortfolioData,
+  {
+    id: 5,
+    title: 'Luxury Auto Campaign',
+    category: 'brand',
+    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&h=1200&fit=crop&q=90',
+    description: 'Complete brand visual identity development showcasing automotive excellence through photography and film.',
+    client: 'Prestige Motors',
+    year: '2023',
+    services: ['Brand Photography', 'Video Production', 'Creative Direction'],
+    challenge: 'Capture the essence of luxury and performance in every frame.',
+    result: 'Brand awareness increased by 250% in target demographics.'
+  },
+  {
+    id: 6,
+    title: 'Fashion Week Documentary',
+    category: 'video',
+    image: 'https://images.unsplash.com/photo-1558769132-cb1aea9c7a4e?w=1600&h=1200&fit=crop&q=90',
+    description: 'Behind-the-scenes documentary capturing the intensity and creativity of international fashion week.',
+    client: 'Fashion Forward Magazine',
+    year: '2023',
+    services: ['Documentary Film', 'Interviews', 'Color Grading'],
+    challenge: 'Document fast-paced environment while maintaining narrative flow.',
+    result: 'Festival selection and 1M+ online views.'
+  },
+  {
+    id: 7,
+    title: 'Restaurant Brand Launch',
+    category: 'photography',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&h=1200&fit=crop&q=90',
+    description: 'Complete visual identity for upscale dining establishment including food, interior, and lifestyle photography.',
+    client: 'Culinary Arts Group',
+    year: '2023',
+    services: ['Food Photography', 'Interior Photography', 'Brand Assets'],
+    challenge: 'Capture atmosphere and culinary artistry that drives reservations.',
+    result: 'Fully booked for first 3 months post-launch.'
+  },
+  {
+    id: 8,
+    title: 'Music Festival Coverage',
+    category: 'events',
+    image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1600&h=1200&fit=crop&q=90',
+    description: 'Multi-day festival documentation with photo and video coverage of performances and atmosphere.',
+    client: 'Summer Sounds Festival',
+    year: '2024',
+    services: ['Event Photography', 'Live Video', 'Social Content'],
+    challenge: 'Capture energy of 50+ performances across multiple stages.',
+    result: '100K+ social media impressions and complete festival archive.'
+  }
+]
+
+function AllProjectsModal({ onClose }: { onClose: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-background z-50 overflow-y-auto"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 100 }}
+        transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
+        className="min-h-screen py-20 px-6"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="max-w-7xl mx-auto">
+          <button
+            onClick={onClose}
+            className="text-muted-foreground hover:text-foreground transition-colors mb-12 font-semibold tracking-wider text-sm flex items-center gap-2"
+          >
+            ← BACK TO MAIN PORTFOLIO
+          </button>
+
+          <div className="mb-16">
+            <h2 className="text-5xl md:text-7xl font-display font-bold text-foreground mb-4 leading-tight">
+              All Projects
+            </h2>
+            <p className="text-muted-foreground text-xl max-w-3xl">
+              Explore our complete collection of work spanning photography, video production, events, and brand campaigns.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {allPortfolioData.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group cursor-pointer"
+              >
+                <div className="relative overflow-hidden rounded-lg mb-4 aspect-[4/3]">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <Button
+                      size="lg"
+                      className="bg-white text-primary hover:bg-white/90 font-bold"
+                    >
+                      VIEW PROJECT
+                      <ArrowRight weight="bold" className="ml-2" />
+                    </Button>
+                  </div>
+                </div>
+                <Badge className="mb-3 bg-primary/10 text-primary border-0 font-semibold tracking-wider text-xs">
+                  {project.category.toUpperCase()}
+                </Badge>
+                <h3 className="text-2xl font-display font-bold text-foreground mb-2 leading-tight">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-2">
+                  {project.client} • {project.year}
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </motion.div>
