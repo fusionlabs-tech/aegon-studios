@@ -14,6 +14,7 @@ import { TermsPage } from './pages/TermsPage';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { ArchivePage } from './pages/ArchivePage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
+import { AboutPage } from './pages/About';
 
 function AnimatedRoutes() {
  const location = useLocation();
@@ -34,6 +35,14 @@ function AnimatedRoutes() {
      element={
       <PageTransition>
        <MediaStudioPage />
+      </PageTransition>
+     }
+    />
+    <Route
+     path='/about'
+     element={
+      <PageTransition>
+       <AboutPage />
       </PageTransition>
      }
     />

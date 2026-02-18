@@ -5,8 +5,9 @@ import { List, X, Sun, Moon } from '@phosphor-icons/react';
 import { useTheme } from '@/context/ThemeContext';
 
 const navLinks = [
- { name: 'Media Studio', path: '/media' },
- { name: 'Software Studio', path: '/software' },
+ { name: 'Stories', path: '/media' },
+ { name: 'Apps', path: '/software' },
+ { name: 'About', path: '/about' },
  { name: "Let's Talk", path: '/contact' },
 ];
 
@@ -43,21 +44,19 @@ export function Navigation() {
     initial={{ y: -100 }}
     animate={{ y: isVisible ? 0 : -100 }}
     transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-    className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${
-     isScrolled
-      ? 'bg-background/80 backdrop-blur-xl border-b border-border'
-      : 'bg-transparent'
-    }`}
+    className='fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border transition-colors duration-500'
    >
     <div className='px-6 md:px-16'>
      <div className='flex items-center justify-between h-20'>
       <Link
        to='/'
-       className='text-xl font-bold tracking-[0.2em] font-display flex items-center gap-2'
+       className='text-xl font-bold tracking-[0.2em] font-display flex items-center gap-2 text-foreground'
       >
-       <div className='w-8 h-8 bg-foreground flex items-center justify-center text-background text-sm transition-colors duration-500'>
-        A
-       </div>
+       <img
+        src={theme === 'dark' ? '/images/logo_w.png' : '/images/logo.png'}
+        alt='Aegon Studios'
+        className='h-12 w-auto object-contain'
+       />
        <span className='hidden sm:block'>AEGON &nbsp; STUDIOS</span>
       </Link>
 
@@ -67,7 +66,7 @@ export function Navigation() {
          <Link
           key={link.name}
           to={link.path}
-          className='text-[10px] font-bold tracking-[0.3em] uppercase opacity-40 hover:opacity-100 transition-opacity'
+          className='text-[10px] font-bold tracking-[0.3em] uppercase opacity-40 hover:opacity-100 transition-opacity text-foreground'
          >
           {link.name}
          </Link>
@@ -78,7 +77,7 @@ export function Navigation() {
 
        <button
         onClick={toggleTheme}
-        className='p-2 hover:bg-foreground/5 rounded-full transition-colors relative group'
+        className='p-2 hover:bg-foreground/5 rounded-full transition-colors relative group text-foreground'
         aria-label='Toggle Theme'
        >
         <AnimatePresence mode='wait'>
@@ -107,7 +106,7 @@ export function Navigation() {
        </button>
 
        <button
-        className='md:hidden p-2'
+        className='md:hidden p-2 text-foreground'
         onClick={() => setIsMobileMenuOpen(true)}
        >
         <List size={24} />

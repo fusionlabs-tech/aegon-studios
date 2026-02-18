@@ -2,10 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
- ArrowRight,
- CaretLeft,
- CaretRight,
- Asterisk,
+ ArrowRightIcon,
+ CaretLeftIcon ,
+ CaretRightIcon,
 } from '@phosphor-icons/react';
 import { Contact } from '@/components/Contact';
 import { archiveData } from '@/data/archiveData';
@@ -160,7 +159,7 @@ export function ArchivePage() {
              <span className='text-[8px] font-bold tracking-[0.2em] uppercase'>
               View Project
              </span>
-             <ArrowRight size={14} />
+             <ArrowRightIcon size={14} />
             </div>
            </div>
           </div>
@@ -187,7 +186,7 @@ export function ArchivePage() {
          onClick={() => handlePageChange(currentPage - 1)}
          className='w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-foreground hover:text-background transition-all disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-foreground'
         >
-         <CaretLeft size={20} weight='bold' />
+         <CaretLeftIcon size={20} weight='bold' />
         </button>
         <div className='flex gap-2'>
          {[...Array(totalPages)].map((_, i) => (
@@ -209,7 +208,7 @@ export function ArchivePage() {
          onClick={() => handlePageChange(currentPage + 1)}
          className='w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-foreground hover:text-background transition-all disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-foreground'
         >
-         <CaretRight size={20} weight='bold' />
+         <CaretRightIcon size={20} weight='bold' />
         </button>
        </div>
 
