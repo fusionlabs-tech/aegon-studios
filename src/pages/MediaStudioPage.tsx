@@ -3,61 +3,62 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ArrowUpRight, Play, Asterisk } from '@phosphor-icons/react';
+import { getCurrentYear } from '@/utils/date';
 
 const services = [
- 'Cinematic Production',
+ 'Documentary Production',
+ 'Cinematic Storytelling',
+ 'Brand Narratives',
+ 'Docu-Series',
  'Editorial Photography',
- 'Event Coverage',
- 'Podcast Production',
- 'Brand Direction',
- 'Motion Graphics',
+ 'Visual Journalism',
 ];
 
 const work = [
  {
   id: 1,
-  title: 'URBAN NIGHTS',
-  category: 'PHOTOGRAPHY',
+  title: 'THE CRAFT',
+  category: 'DOCU-SERIES',
   image: '/images/urban_nights.png',
   client: 'Luxe Street Apparel',
   year: '2024',
  },
  {
   id: 2,
-  title: 'STUDIO SESSION',
-  category: 'VIDEO',
+  title: 'MAKER MOVEMENT',
+  category: 'DOCUMENTARY',
   image: '/images/studio_session.png',
   client: 'Vanguard Collective',
   year: '2024',
  },
  {
   id: 3,
-  title: 'SUMMIT EVENT',
-  category: 'EVENTS',
+  title: 'GLOBAL SUMMIT',
+  category: 'EVENT FILM',
   image: '/images/event_summit.png',
   client: 'Global Forum',
   year: '2024',
  },
  {
   id: 4,
-  title: 'FOUNDERS PODCAST',
-  category: 'PODCAST',
+  title: 'FOUNDERS STORIES',
+  category: 'SERIES',
   image: '/images/podcast_setup.png',
   client: 'Startup Stories',
   year: '2024',
  },
  {
   id: 5,
-  title: 'LUXURY AUTO',
-  category: 'VIDEO',
+  title: 'ORIGINS',
+  category: 'Brand Film',
   image: '/images/luxury_car.png',
   client: 'Prestige Motors',
   year: '2023',
  },
  {
   id: 6,
-  title: 'TECH LAUNCH',
-  category: 'PHOTOGRAPHY',
+  title: 'INNOVATION HUB',
+  category: 'Visual Journalism',
   image: '/images/tech_launch.png',
   client: 'InnovateTech',
   year: '2024',
@@ -70,47 +71,38 @@ export function MediaStudioPage() {
 
  useEffect(() => {
   window.scrollTo(0, 0);
-
-  const ctx = gsap.context(() => {
-   gsap.fromTo(
-    '.hero-title',
-    { y: '100%' },
-    { y: '0%', duration: 1.2, ease: 'power4.out', delay: 0.3 },
-   );
-   gsap.fromTo(
-    '.hero-sub',
-    { opacity: 0, y: 30 },
-    { opacity: 1, y: 0, duration: 0.8, delay: 0.8 },
-   );
-  }, containerRef);
-
-  return () => ctx.revert();
  }, []);
 
  return (
-  <div ref={containerRef} className='bg-background text-foreground'>
-   {/* Hero */}
-   <section className='min-h-[80vh] flex flex-col justify-end pt-40 pb-16 px-6 md:px-16 border-b border-border'>
-    <div className='mb-8'>
-     <span className='text-[10px] font-bold tracking-[0.4em] opacity-40'>
-      (01) MEDIA STUDIO
-     </span>
+  <div ref={containerRef} className='bg-background text-foreground pt-32'>
+   {/* Hero - Matches About Page Style */}
+   <div className='px-6 md:px-16'>
+    <div className='max-w-4xl mx-auto'>
+     <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className='mb-24'
+     >
+      <span className='block text-xs font-bold tracking-widest opacity-40 uppercase mb-8'>
+       Stories
+      </span>
+      <h1 className='text-[clamp(1.5rem,3vw,3.5rem)] leading-[1.0] font-display font-medium mb-12 italic'>
+       We tell stories that matter. Documentary-style narratives for brands and
+       builders who are shaping the future.
+      </h1>
+      <p className='text-lg md:text-xl opacity-80 leading-relaxed font-sans'>
+       Our production studio is dedicated to capturing the essence of human
+       connection and innovation through the lens of cinematic storytelling.
+       From full-length documentaries to brand films, we bring real stories to
+       life.
+      </p>
+     </motion.div>
     </div>
-    <div className='overflow-hidden mb-8'>
-     <h1 className='hero-title text-[clamp(3rem,15vw,14rem)] leading-[0.85] font-display font-bold tracking-tighter'>
-      CINEMATIC
-      <br />
-      <span className='text-foreground/20'>VISION</span>
-     </h1>
-    </div>
-    <p className='hero-sub text-xl md:text-2xl opacity-50 max-w-2xl leading-relaxed'>
-     We craft visual narratives that move people. From editorial photography to
-     cinematic production, every frame is intentional.
-    </p>
-   </section>
+   </div>
 
    {/* Services - Horizontal list */}
-   <section className='py-16 border-b border-border overflow-hidden'>
+   <section className='py-16 border-t border-b border-border overflow-hidden'>
     <div className='flex gap-12 animate-marquee whitespace-nowrap'>
      {[...services, ...services].map((service, i) => (
       <span
@@ -131,7 +123,7 @@ export function MediaStudioPage() {
       <span className='text-[10px] font-bold tracking-[0.4em] opacity-40 block mb-4'>
        SELECTED WORK
       </span>
-      <h2 className='text-4xl md:text-6xl font-display font-bold'>PORTFOLIO</h2>
+      <h2 className='text-4xl md:text-6xl font-display font-bold'>STORIES</h2>
      </div>
      <span className='text-6xl md:text-8xl font-display font-bold opacity-10'>
       {work.length.toString().padStart(2, '0')}
@@ -196,7 +188,7 @@ export function MediaStudioPage() {
       to='/archive'
       className='px-8 py-4 border border-border text-sm font-bold tracking-widest hover:bg-foreground hover:text-background transition-colors uppercase'
      >
-      View All Projects
+      View All Stories
      </Link>
     </div>
    </section>
@@ -212,18 +204,18 @@ export function MediaStudioPage() {
      {[
       {
        num: '01',
-       title: 'DISCOVERY',
-       desc: 'Understanding your vision and objectives.',
+       title: 'RESEARCH',
+       desc: 'Deep dive into the narrative and characters.',
       },
       {
        num: '02',
        title: 'PRODUCTION',
-       desc: 'Executing with precision and creativity.',
+       desc: 'Cinematic capture with documentary authenticity.',
       },
       {
        num: '03',
-       title: 'DELIVERY',
-       desc: 'Final assets optimized for all platforms.',
+       title: 'EDIT',
+       desc: 'Crafting the story through rhythm and sound.',
       },
      ].map((step, i) => (
       <div
@@ -243,8 +235,9 @@ export function MediaStudioPage() {
    {/* CTA */}
    <section className='py-32 px-6 md:px-16 text-center border-t border-border'>
     <h2 className='text-[clamp(2rem,8vw,8rem)] leading-[0.85] font-display font-bold mb-12'>
-     HAVE A<br />
-     <span className='text-foreground/20'>PROJECT?</span>
+     TELL YOUR
+     <br />
+     <span className='text-foreground/20'>STORY?</span>
     </h2>
     <Link
      to='/contact'
@@ -258,7 +251,7 @@ export function MediaStudioPage() {
    <footer className='py-8 px-6 md:px-16 border-t border-border'>
     <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
      <div className='text-xs tracking-widest opacity-40'>
-      © 2024 AEGON STUDIOS
+      © {getCurrentYear()} AEGON STUDIOS
      </div>
      <div className='flex gap-8 text-xs tracking-widest opacity-40'>
       <Link to='/privacy' className='hover:opacity-100 transition-opacity'>

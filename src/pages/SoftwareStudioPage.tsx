@@ -1,21 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
 import {
  ArrowUpRight,
  Asterisk,
  CaretLeft,
  CaretRight,
 } from '@phosphor-icons/react';
+import { getCurrentYear } from '@/utils/date';
 
 const capabilities = [
- 'Website Development',
- 'Mobile Apps',
- 'E-commerce',
- 'Custom Software',
- 'API Development',
- 'UI/UX Design',
+ 'Scalable Applications',
+ 'User-Centric Architecture',
+ 'High-Performance APIs',
+ 'Secure Digital Infrastructure',
+ 'Responsive Design',
+ 'Cloud-Native Solutions',
 ];
 
 const stack = [
@@ -33,7 +33,7 @@ const stack = [
 const allProjects = [
  {
   id: 1,
-  title: 'FINTECH DASH',
+  title: 'PAYMENT GATEWAY',
   category: 'WEB APP',
   image: '/images/tech_launch.png',
   client: 'Paystack',
@@ -43,7 +43,7 @@ const allProjects = [
  },
  {
   id: 2,
-  title: 'HEALTH PLATFORM',
+  title: 'TELEMEDICINE SUITE',
   category: 'MOBILE + WEB',
   image: '/images/urban_nights.png',
   client: 'Prima Health',
@@ -53,7 +53,7 @@ const allProjects = [
  },
  {
   id: 3,
-  title: 'ECOM STORE',
+  title: 'GLOBAL E-COMMERCE',
   category: 'SHOPIFY',
   image: '/images/luxury_car.png',
   client: 'Wild Fashion',
@@ -63,7 +63,7 @@ const allProjects = [
  },
  {
   id: 4,
-  title: 'CREATIVE PORTFOLIO',
+  title: 'IMMERSIVE PORTFOLIO',
   category: 'WEB',
   image: '/images/studio_session.png',
   client: 'Antidote',
@@ -73,7 +73,7 @@ const allProjects = [
  },
  {
   id: 5,
-  title: 'SAAS PLATFORM',
+  title: 'ENTERPRISE CRM',
   category: 'WEB APP',
   image: '/images/event_summit.png',
   client: 'Moniepoint',
@@ -83,7 +83,7 @@ const allProjects = [
  },
  {
   id: 6,
-  title: 'WELLNESS APP',
+  title: 'DIAGNOSTICS APP',
   category: 'MOBILE',
   image: '/images/podcast_setup.png',
   client: 'Heva Health',
@@ -94,7 +94,7 @@ const allProjects = [
  // Page 2
  {
   id: 7,
-  title: 'CRYPTO EXCHANGE',
+  title: 'DEFI EXCHANGE',
   category: 'WEB APP',
   image: '/images/tech_launch.png',
   client: 'BitTech',
@@ -104,7 +104,7 @@ const allProjects = [
  },
  {
   id: 8,
-  title: 'FOOD DELIVERY',
+  title: 'DELIVERY NETWORK',
   category: 'MOBILE',
   image: '/images/urban_nights.png',
   client: 'FastEats',
@@ -114,7 +114,7 @@ const allProjects = [
  },
  {
   id: 9,
-  title: 'REAL ESTATE CRM',
+  title: 'PROPERTY MANAGER',
   category: 'SAAS',
   image: '/images/luxury_car.png',
   client: 'PropCo',
@@ -124,7 +124,7 @@ const allProjects = [
  },
  {
   id: 10,
-  title: 'MARKETPLACE',
+  title: 'B2B MARKETPLACE',
   category: 'WEB',
   image: '/images/studio_session.png',
   client: 'TradeHub',
@@ -144,7 +144,7 @@ const allProjects = [
  },
  {
   id: 12,
-  title: 'AI CHATBOT',
+  title: 'AI ASSISTANT',
   category: 'WEB APP',
   image: '/images/podcast_setup.png',
   client: 'Intellect',
@@ -169,21 +169,6 @@ export function SoftwareStudioPage() {
 
  useEffect(() => {
   window.scrollTo(0, 0);
-
-  const ctx = gsap.context(() => {
-   gsap.fromTo(
-    '.hero-title',
-    { y: '100%' },
-    { y: '0%', duration: 1.2, ease: 'power4.out', delay: 0.3 },
-   );
-   gsap.fromTo(
-    '.hero-sub',
-    { opacity: 0, y: 30 },
-    { opacity: 1, y: 0, duration: 0.8, delay: 0.8 },
-   );
-  }, containerRef);
-
-  return () => ctx.revert();
  }, []);
 
  const handleNext = () => {
@@ -191,29 +176,34 @@ export function SoftwareStudioPage() {
  };
 
  return (
-  <div ref={containerRef} className='bg-background text-foreground'>
-   {/* Hero */}
-   <section className='min-h-[80vh] flex flex-col justify-end pt-40 pb-16 px-6 md:px-16 border-b border-border'>
-    <div className='mb-8'>
-     <span className='text-[10px] font-bold tracking-[0.4em] opacity-40'>
-      (02) SOFTWARE STUDIO
-     </span>
+  <div ref={containerRef} className='bg-background text-foreground pt-32'>
+   {/* Hero - Matches About Page Style */}
+   <div className='px-6 md:px-16'>
+    <div className='max-w-4xl mx-auto'>
+     <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className='mb-24'
+     >
+      <span className='block text-xs font-bold tracking-widest opacity-40 uppercase mb-8'>
+       Apps
+      </span>
+      <h1 className='text-[clamp(1.5rem,3vw,3.5rem)] leading-[1.0] font-display font-medium mb-12 italic'>
+       We build digital products that scale. Precision-engineered software
+       solutions for visionary companies.
+      </h1>
+      <p className='text-lg md:text-xl opacity-80 leading-relaxed font-sans'>
+       From high-performance web applications to native mobile experiences, our
+       software studio crafts the digital infrastructure for tomorrow. We ensure
+       every line of code serves a purpose.
+      </p>
+     </motion.div>
     </div>
-    <div className='overflow-hidden mb-8'>
-     <h1 className='hero-title text-[clamp(3rem,15vw,14rem)] leading-[0.85] font-display font-bold tracking-tighter'>
-      DIGITAL
-      <br />
-      <span className='text-foreground/20'>CRAFT</span>
-     </h1>
-    </div>
-    <p className='hero-sub text-xl md:text-2xl opacity-50 max-w-2xl leading-relaxed'>
-     We build digital products that scale. From web apps to mobile experiences,
-     every line of code is intentional.
-    </p>
-   </section>
+   </div>
 
    {/* Capabilities - Marquee */}
-   <section className='py-16 border-b border-border overflow-hidden'>
+   <section className='py-16 border-t border-b border-border overflow-hidden'>
     <div className='flex gap-12 animate-marquee whitespace-nowrap'>
      {[...capabilities, ...capabilities].map((cap, i) => (
       <span
@@ -373,18 +363,18 @@ export function SoftwareStudioPage() {
      {[
       {
        num: '01',
-       title: 'DISCOVERY',
-       desc: 'Understanding requirements and architecture.',
+       title: 'ARCHITECTURE',
+       desc: 'Designing scalable and secure systems.',
       },
       {
        num: '02',
-       title: 'DEVELOPMENT',
-       desc: 'Building with modern tech and agile methods.',
+       title: 'ENGINEERING',
+       desc: 'Clean code, rigorous testing, and best practices.',
       },
       {
        num: '03',
-       title: 'LAUNCH',
-       desc: 'Deployment, testing, and ongoing support.',
+       title: 'DEPLOYMENT',
+       desc: 'CI/CD pipelines and performance monitoring.',
       },
      ].map((step, i) => (
       <div
@@ -406,7 +396,7 @@ export function SoftwareStudioPage() {
     <h2 className='text-[clamp(2rem,8vw,8rem)] leading-[0.85] font-display font-bold mb-12'>
      BUILD
      <br />
-     <span className='text-foreground/20'>SOMETHING?</span>
+     <span className='text-foreground/20'>WITH US?</span>
     </h2>
     <Link
      to='/contact'
@@ -420,7 +410,7 @@ export function SoftwareStudioPage() {
    <footer className='py-8 px-6 md:px-16 border-t border-border'>
     <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
      <div className='text-xs tracking-widest opacity-40'>
-      © 2024 AEGON STUDIOS
+      © {getCurrentYear()} AEGON STUDIOS
      </div>
      <div className='flex gap-8 text-xs tracking-widest opacity-40'>
       <Link to='/privacy' className='hover:opacity-100 transition-opacity'>
