@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRightIcon } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
+import { getCurrentYear } from '@/utils/date';
 
 export function AboutPage() {
  return (
@@ -145,6 +146,23 @@ export function AboutPage() {
      </Link>
     </div>
    </div>
+   
+   {/* Minimal Footer */}
+   <footer className='py-8 mt-24 px-6 md:px-16 border-t border-border -mx-6 md:-mx-16'>
+    <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
+     <div className='text-xs tracking-widest opacity-40'>
+      © {getCurrentYear()} AEGON STUDIOS
+     </div>
+     <div className='flex gap-8 text-xs tracking-widest opacity-40'>
+      <Link to='/privacy' className='hover:opacity-100 transition-opacity'>
+       PRIVACY
+      </Link>
+      <Link to='/terms' className='hover:opacity-100 transition-opacity'>
+       TERMS
+      </Link>
+     </div>
+    </div>
+   </footer>
   </div>
  );
 }

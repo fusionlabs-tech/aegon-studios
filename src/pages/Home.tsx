@@ -98,23 +98,29 @@ function TypewriterSequence({
 
  return (
   <div className='flex flex-col items-center justify-center px-4 max-w-5xl'>
-   <motion.img
-    src='/images/logo_w.png'
-    alt='Aegon Studios'
+   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8, delay: 0.2 }}
-    className='h-24 w-auto object-contain mb-8'
-   />
-   <p className='text-white font-display font-bold tracking-tight text-center text-2xl md:text-5xl leading-tight'>
+    className='flex items-center gap-0 mb-8'
+   >
+    <img
+     src='/images/logo_w_new.png'
+     alt='Aegon Studios'
+     className='h-24 w-auto object-contain'
+    />
+    <span className='font-hackney text-4xl md:text-5xl capitalize tracking-wider text-white -ml-4 mt-2'>
+     Aegon Studios
+    </span>
+   </motion.div>
+   <p className='text-white font-display font-medium italic tracking-tight text-center text-3xl md:text-5xl leading-tight'>
     {displayedText1}
     {/* Cursor 1: Visible while text1 is typing */}
     {displayedText1.length < text1.length && (
      <span className='inline-block w-[3px] h-[1em] bg-white ml-1 animate-pulse align-text-bottom' />
     )}
 
-    <span className='inline-block w-2 md:w-3'></span>
-    <br className='md:hidden' />
+    <br />
 
     <span className='text-blue-500 italic'>
      {displayedText2}
@@ -144,28 +150,8 @@ function TypewriterSequence({
 const heroVideos = [
  {
   id: 1,
-  title: 'URBAN RHYTHM',
-  src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
- },
- {
-  id: 2,
-  title: 'DIGITAL FRONTIER',
-  src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
- },
- {
-  id: 3,
-  title: "NATURE'S CANVAS",
-  src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
- },
- {
-  id: 4,
-  title: 'TECHSPLORATION',
-  src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
- },
- {
-  id: 5,
-  title: 'HUMAN CONNECTION',
-  src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+  title: 'AEGON STUDIOS SHOWREEL',
+  src: 'https://www.youtube.com/embed/Zx8SnJfQV1c?autoplay=1&mute=1&loop=1&playlist=Zx8SnJfQV1c&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1',
  },
 ];
 
@@ -267,18 +253,17 @@ export function Home() {
      {/* Video Background Layer */}
      <div className='absolute inset-0 z-0'>
       <AnimatePresence mode='wait'>
-       <motion.video
+       <motion.iframe
         key={heroVideos[currentVideoIndex].id}
         src={heroVideos[currentVideoIndex].src}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
-        className='w-full h-full object-cover opacity-60'
-        autoPlay
-        muted
-        loop
-        playsInline
+        className='absolute inset-0 w-full h-full opacity-60 pointer-events-none'
+        allow='autoplay; encrypted-media'
+        allowFullScreen
+        style={{ border: 'none', transform: 'scale(1.15)' }}
        />
       </AnimatePresence>
       <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20 opacity-90' />
@@ -513,10 +498,10 @@ export function Home() {
       impact together.
       <br />
       <a
-       href='mailto:hello@aegon.studios'
+       href='mailto:hello@aegon-studios.com'
        className='underline decoration-2 underline-offset-8 hover:opacity-70 transition-opacity'
       >
-       hello@aegon.studios
+       hello@aegon-studios.com
       </a>
       <br />
       <span className='block text-lg md:text-xl font-normal opacity-40 mt-8 mb-4'>
@@ -533,12 +518,17 @@ export function Home() {
 
     {/* Massive Footer Text */}
     <div className='w-full overflow-hidden leading-none select-none'>
-     <div className='text-[clamp(5rem,25vw,30rem)] font-display font-bold tracking-tighter text-center leading-none text-foreground flex justify-center items-center h-[1em]'>
+     <div className='text-[clamp(4.5rem,22vw,26rem)] font-display font-bold tracking-tighter text-center leading-none text-foreground flex justify-center items-center h-[1em]'>
+      <img
+       src={theme === 'dark' ? '/images/logo_w_new.png' : '/images/logo_new.png'}
+       alt='Logo Icon'
+       className='h-[0.7em] w-auto mr-[0.1em]'
+      />
       AEG
       <span className='relative flex items-center justify-center'>
        O
        <img
-        src={theme === 'dark' ? '/images/logo_w.png' : '/images/logo.png'}
+        src={theme === 'dark' ? '/images/logo_w_new.png' : '/images/logo_new.png'}
         alt='Logo'
         className='absolute w-[35%] h-auto'
         style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
