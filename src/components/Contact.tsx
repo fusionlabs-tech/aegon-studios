@@ -95,7 +95,7 @@ export function Contact({
          <div className='text-xs font-bold tracking-widest opacity-40 uppercase mb-1'>
           Email
          </div>
-         <div className='text-xl font-semibold'>hello@aegonstudios.com</div>
+         <div className='text-xl font-semibold'>hello@aegon-studios.com</div>
         </div>
        </div>
 
@@ -233,23 +233,21 @@ export function Contact({
    </div>
 
    {showFooter && (
-    <div
-     className={`${showHeader ? 'mt-32 border-t pt-12' : 'py-12 border-t'} text-center opacity-20 text-sm border-border`}
-    >
-     <div className='container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6'>
-      <p className='tracking-[0.2em] font-bold uppercase transition-colors duration-500'>
-       © {getCurrentYear()} AEGON STUDIOS. ALL RIGHTS RESERVED.
-      </p>
-      <div className='flex gap-8'>
+    <footer className={`py-8 px-6 md:px-16 border-t border-border w-full ${showHeader ? 'mt-32' : 'mt-24'}`}>
+     <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
+      <div className='text-xs tracking-widest opacity-40'>
+       © {getCurrentYear()} AEGON STUDIOS
+      </div>
+      <div className='flex gap-8 text-xs tracking-widest opacity-40'>
        <Link to='/privacy' className='hover:opacity-100 transition-opacity'>
-        Privacy Policy
+        PRIVACY
        </Link>
        <Link to='/terms' className='hover:opacity-100 transition-opacity'>
-        Terms of Service
+        TERMS
        </Link>
       </div>
      </div>
-    </div>
+    </footer>
    )}
   </section>
  );

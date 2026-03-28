@@ -50,14 +50,16 @@ export function Navigation() {
      <div className='flex items-center justify-between h-20'>
       <Link
        to='/'
-       className='text-xl font-bold tracking-[0.2em] font-display flex items-center gap-2 text-foreground'
+       className='text-xl font-bold tracking-[0.2em] font-display flex items-center text-foreground'
       >
        <img
-        src={theme === 'dark' ? '/images/logo_w.png' : '/images/logo.png'}
+        src={theme === 'dark' ? '/images/logo_w_new.png' : '/images/logo_new.png'}
         alt='Aegon Studios'
         className='h-12 w-auto object-contain'
        />
-       <span className='hidden sm:block'>AEGON &nbsp; STUDIOS</span>
+       <span className='hidden sm:block font-hackney text-2xl capitalize tracking-wider -ml-2'>
+        Aegon Studios
+       </span>
       </Link>
 
       <div className='flex items-center gap-12'>
@@ -191,7 +193,7 @@ export function Navigation() {
         <p className='text-[10px] font-bold tracking-widest opacity-30 uppercase mb-4'>
          Email
         </p>
-        <p className='font-bold'>hello@aegon.com</p>
+        <p className='font-bold'>hello@aegon-studios.com</p>
        </div>
        <div>
         <p className='text-[10px] font-bold tracking-widest opacity-30 uppercase mb-4'>

@@ -19,161 +19,77 @@ const capabilities = [
 ];
 
 const stack = [
- 'React',
- 'Next.js',
- 'TypeScript',
- 'Node.js',
- 'React Native',
- 'PostgreSQL',
- 'MongoDB',
- 'Shopify',
- 'AWS',
+ 'Product Strategy',
+ 'UI/UX Design',
+ 'System Architecture',
+ 'Cloud Infrastructure',
+ 'API Engineering',
+ 'Backend Systems',
+ 'Frontend Development',
+ 'Data Security',
+ 'Quality Assurance',
 ];
 
 const allProjects = [
  {
-  id: 1,
-  title: 'PAYMENT GATEWAY',
-  category: 'WEB APP',
-  image: '/images/tech_launch.png',
-  client: 'Paystack',
-  stack: ['React', 'Node.js'],
-  year: '2024',
-  link: 'https://paystack.com',
- },
- {
   id: 2,
-  title: 'TELEMEDICINE SUITE',
-  category: 'MOBILE + WEB',
-  image: '/images/urban_nights.png',
-  client: 'Prima Health',
-  stack: ['React Native', 'Next.js'],
+  title: 'Venshack',
+  category: 'PRODUCT ENGINEERING',
+  image: '/images/projects/venshack.png',
+  client: 'Venshack',
+  stack: ['PropTech'],
   year: '2024',
-  link: '#',
+  link: 'https://venshack.io',
  },
  {
   id: 3,
-  title: 'GLOBAL E-COMMERCE',
-  category: 'SHOPIFY',
-  image: '/images/luxury_car.png',
-  client: 'Wild Fashion',
-  stack: ['Shopify', 'React'],
-  year: '2023',
-  link: '#',
+  title: 'Rebucom',
+  category: 'PRODUCT ENGINEERING',
+  image: '/images/projects/rebucom.png',
+  client: 'Rebucom',
+  stack: ['Logistics', 'SaaS'],
+  year: '2024',
+  link: 'https://rebucom.com',
  },
  {
   id: 4,
-  title: 'IMMERSIVE PORTFOLIO',
-  category: 'WEB',
-  image: '/images/studio_session.png',
-  client: 'Antidote',
-  stack: ['Next.js', 'Three.js'],
-  year: '2023',
-  link: '#',
+  title: 'Ritease',
+  category: 'DOCUMENT MANAGEMENT',
+  image: '/images/projects/ritease.png',
+  client: 'Ritease',
+  stack: ['AI', 'SaaS'],
+  year: '2024',
+  link: 'https://ritease.com',
  },
  {
   id: 5,
-  title: 'ENTERPRISE CRM',
-  category: 'WEB APP',
-  image: '/images/event_summit.png',
-  client: 'Moniepoint',
-  stack: ['React', 'MongoDB'],
+  title: 'Ritemails',
+  category: 'AUTOMATION',
+  image: '/images/projects/ritemails.png',
+  client: 'Ritemails',
+  stack: ['AI', 'SaaS'],
   year: '2024',
-  link: '#',
+  link: 'https://ritemails.co.uk',
  },
- {
-  id: 6,
-  title: 'DIAGNOSTICS APP',
-  category: 'MOBILE',
-  image: '/images/podcast_setup.png',
-  client: 'Heva Health',
-  stack: ['React Native', 'Firebase'],
-  year: '2023',
-  link: '#',
- },
- // Page 2
  {
   id: 7,
-  title: 'DEFI EXCHANGE',
-  category: 'WEB APP',
-  image: '/images/tech_launch.png',
-  client: 'BitTech',
-  stack: ['React', 'Rust'],
+  title: 'RiteLedger',
+  category: 'FINANCE',
+  image: '/images/projects/riteledger.png',
+  client: 'RiteLedger',
+  stack: ['TypeScript', 'Automation'],
   year: '2024',
-  link: '#',
- },
- {
-  id: 8,
-  title: 'DELIVERY NETWORK',
-  category: 'MOBILE',
-  image: '/images/urban_nights.png',
-  client: 'FastEats',
-  stack: ['Flutter', 'Go'],
-  year: '2024',
-  link: '#',
- },
- {
-  id: 9,
-  title: 'PROPERTY MANAGER',
-  category: 'SAAS',
-  image: '/images/luxury_car.png',
-  client: 'PropCo',
-  stack: ['Next.js', 'PostgreSQL'],
-  year: '2023',
-  link: '#',
- },
- {
-  id: 10,
-  title: 'B2B MARKETPLACE',
-  category: 'WEB',
-  image: '/images/studio_session.png',
-  client: 'TradeHub',
-  stack: ['Vue.js', 'Laravel'],
-  year: '2023',
-  link: '#',
- },
- {
-  id: 11,
-  title: 'LOGISTICS TRACKER',
-  category: 'MOBILE',
-  image: '/images/event_summit.png',
-  client: 'ShipIt',
-  stack: ['React Native', 'Node.js'],
-  year: '2024',
-  link: '#',
- },
- {
-  id: 12,
-  title: 'AI ASSISTANT',
-  category: 'WEB APP',
-  image: '/images/podcast_setup.png',
-  client: 'Intellect',
-  stack: ['React', 'Python'],
-  year: '2024',
-  link: '#',
- },
+  link: 'https://riteledger.co.uk',
+ }
 ];
-
-const ITEMS_PER_PAGE = 6;
 
 export function SoftwareStudioPage() {
  const containerRef = useRef<HTMLDivElement>(null);
  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
- const [page, setPage] = useState(0);
-
- const visibleProjects = allProjects.slice(
-  page * ITEMS_PER_PAGE,
-  (page + 1) * ITEMS_PER_PAGE,
- );
- const hasMore = (page + 1) * ITEMS_PER_PAGE < allProjects.length;
 
  useEffect(() => {
   window.scrollTo(0, 0);
  }, []);
-
- const handleNext = () => {
-  setPage((prev) => prev + 1);
- };
 
  return (
   <div ref={containerRef} className='bg-background text-foreground pt-32'>
@@ -218,123 +134,80 @@ export function SoftwareStudioPage() {
    </section>
 
    {/* Project List - Clean table style */}
-   <section className='py-24'>
-    <div className='px-6 md:px-16 mb-16'>
-     <div className='flex justify-between items-end'>
-      <div>
-       <span className='text-[10px] font-bold tracking-[0.4em] opacity-40 block mb-4'>
-        SELECTED WORK
-       </span>
-       <h2 className='text-4xl md:text-6xl font-display font-bold'>
-        PROJECTS ({allProjects.length.toString().padStart(2, '0')})
-       </h2>
-      </div>
+    {/* Project List - Bento Grid */}
+    <section className='py-24 relative z-10'>
+     <div className='px-6 md:px-16 mb-16'>
+      <span className='text-[10px] font-bold tracking-[0.4em] opacity-40 block mb-4'>
+       SELECTED WORK
+      </span>
+      <h2 className='text-4xl md:text-6xl font-display font-bold'>
+       COMMERCIAL PROJECTS ({allProjects.length.toString().padStart(2, '0')})
+      </h2>
      </div>
-    </div>
 
-    <div className='border-t border-border'>
-     {visibleProjects.map((project, i) => (
-      <motion.div
-       key={project.id}
-       className='group border-b border-border cursor-pointer relative overflow-hidden'
-       onMouseEnter={() => setHoveredProject(project.id)}
-       onMouseLeave={() => setHoveredProject(null)}
-       onClick={() => window.open(project.link, '_blank')}
-       initial={{ opacity: 0 }}
-       whileInView={{ opacity: 1 }}
-       viewport={{ once: true }}
-       transition={{ delay: 0.05 }}
-      >
-       {/* Hover Image */}
-       <motion.div
-        className='absolute right-16 top-1/2 -translate-y-1/2 w-[350px] aspect-[16/10] pointer-events-none z-10'
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{
-         opacity: hoveredProject === project.id ? 1 : 0,
-         scale: hoveredProject === project.id ? 1 : 0.8,
-        }}
-        transition={{ duration: 0.4 }}
-       >
-        <img
-         src={project.image}
-         alt={project.title}
-         className='w-full h-full object-cover'
-        />
-       </motion.div>
+     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-6 md:px-16 pb-24'>
+      {allProjects.map((project, i) => {
+       const isHero = i === 0;
+       return (
+        <div
+         key={project.id}
+         className={`flex flex-col gap-4 ${
+          isHero ? 'md:col-span-2 lg:col-span-2 md:row-span-2' : 'col-span-1 row-span-1'
+         }`}
+        >
+         {/* Image Tile */}
+         <div
+          className={`group relative overflow-hidden bg-black border border-border cursor-pointer transition-transform duration-500 hover:scale-[1.01] ${
+           isHero ? 'aspect-[4/3] md:aspect-video' : 'aspect-[4/3] md:aspect-video'
+          }`}
+          onClick={() => window.open(project.link, '_blank')}
+         >
+          {/* Background Image */}
+          <div className='absolute inset-0 bg-[#050505]'>
+           <img
+            src={project.image}
+            alt={project.title}
+            className='w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-all duration-700 filter grayscale group-hover:grayscale-0 group-hover:scale-105'
+           />
+          </div>
 
-       <div className='px-6 md:px-16 py-8 md:py-10 flex items-center justify-between relative'>
-        <div className='flex items-center gap-8 md:gap-16'>
-         <span className='text-sm font-bold opacity-20 w-8'>
-          {project.id.toString().padStart(2, '0')}
-         </span>
-         <div>
-          <h3 className='text-2xl md:text-3xl font-display font-bold group-hover:translate-x-4 transition-transform'>
+          {/* Light gradient just at bottom for metadata */}
+          <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent'></div>
+
+          {/* Small metadata only */}
+          <div className='absolute bottom-0 left-0 right-0 z-10 p-4 flex justify-between items-center'>
+           <span className='text-[10px] font-bold tracking-widest text-white/70 uppercase'>
+            {project.category}
+           </span>
+           <span className='text-[10px] text-white/50 font-bold'>{project.year}</span>
+          </div>
+         </div>
+
+         {/* Below image: Title + Button */}
+         <div className='flex items-center justify-between gap-2'>
+          <h3 className='font-display font-bold text-xs sm:text-sm md:text-base lg:text-lg'>
            {project.title}
           </h3>
+          <button
+           onClick={() => window.open(project.link, '_blank')}
+           className='shrink-0 flex items-center gap-1 px-2.5 py-1.5 border border-border text-[9px] sm:text-[10px] font-bold tracking-widest hover:bg-foreground hover:text-background transition-colors whitespace-nowrap'
+          >
+           VIEW <ArrowUpRight size={10} weight='bold' />
+          </button>
          </div>
         </div>
-        <div className='flex items-center gap-6 md:gap-12'>
-         <span className='text-[10px] font-bold tracking-widest text-[var(--accent-software)]'>
-          {project.category}
-         </span>
-         <div className='hidden md:flex gap-2'>
-          {project.stack.map((tech, j) => (
-           <span
-            key={j}
-            className='text-[9px] font-bold tracking-widest px-2 py-1 border border-border opacity-40'
-           >
-            {tech}
-           </span>
-          ))}
-         </div>
-         <span className='hidden md:block opacity-40 text-sm'>
-          {project.year}
-         </span>
-         <ArrowUpRight
-          size={24}
-          weight='bold'
-          className='opacity-0 group-hover:opacity-100 transition-opacity'
-         />
-        </div>
-       </div>
-      </motion.div>
-     ))}
-    </div>
+       );
+      })}
+     </div>
+    </section>
 
-    <div className='px-6 md:px-16 pt-12 flex justify-between items-center border-b border-border pb-12'>
-     <button
-      onClick={() => setPage((p) => Math.max(0, p - 1))}
-      disabled={page === 0}
-      className='flex items-center gap-2 px-6 py-3 border border-border text-xs font-bold tracking-widest uppercase hover:bg-foreground hover:text-background transition-colors disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-foreground rounded-full'
-     >
-      <CaretLeft weight='bold' size={16} /> Previous
-     </button>
-
-     <span className='text-[10px] font-bold tracking-widest opacity-40 uppercase'>
-      Page {page + 1} of {Math.ceil(allProjects.length / ITEMS_PER_PAGE)}
-     </span>
-
-     <button
-      onClick={() =>
-       setPage((p) =>
-        Math.min(Math.ceil(allProjects.length / ITEMS_PER_PAGE) - 1, p + 1),
-       )
-      }
-      disabled={!hasMore}
-      className='flex items-center gap-2 px-6 py-3 border border-border text-xs font-bold tracking-widest uppercase hover:bg-foreground hover:text-background transition-colors disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-foreground rounded-full'
-     >
-      Next <CaretRight weight='bold' size={16} />
-     </button>
-    </div>
-   </section>
-
-   {/* Tech Stack */}
-   <section className='py-24 px-6 md:px-16'>
+   {/* Core Expertise */}
+   <section className='py-24 px-6 md:px-16 border-t border-border'>
     <div className='mb-12'>
      <span className='text-[10px] font-bold tracking-[0.4em] opacity-40 block mb-4'>
-      TECHNOLOGIES
+      CAPABILITIES
      </span>
-     <h2 className='text-3xl md:text-4xl font-display font-bold'>OUR STACK</h2>
+     <h2 className='text-3xl md:text-4xl font-display font-bold'>CORE EXPERTISE</h2>
     </div>
     <div className='flex flex-wrap gap-4'>
      {stack.map((tech, i) => (
@@ -359,33 +232,38 @@ export function SoftwareStudioPage() {
       HOW WE WORK
      </span>
     </div>
-    <div className='grid md:grid-cols-3 border-t border-border'>
+    <div className='grid grid-cols-2 lg:grid-cols-4 border-t border-border'>
      {[
       {
        num: '01',
-       title: 'ARCHITECTURE',
-       desc: 'Designing scalable and secure systems.',
+       title: 'DISCOVERY',
+       desc: 'We start by deeply understanding your business goals, users, and constraints before writing a single line of code.',
       },
       {
        num: '02',
-       title: 'ENGINEERING',
-       desc: 'Clean code, rigorous testing, and best practices.',
+       title: 'DESIGN & PLAN',
+       desc: 'We map out the full system—user flows, architecture, and UI—aligning every decision to your outcomes.',
       },
       {
        num: '03',
-       title: 'DEPLOYMENT',
-       desc: 'CI/CD pipelines and performance monitoring.',
+       title: 'BUILD & ITERATE',
+       desc: 'We ship fast in focused sprints, gathering real feedback at every stage and refining continuously.',
+      },
+      {
+       num: '04',
+       title: 'LAUNCH & SCALE',
+       desc: 'We deploy with confidence and stay close post-launch—monitoring, optimising, and scaling as you grow.',
       },
      ].map((step, i) => (
       <div
        key={i}
-       className={`p-8 md:p-16 ${i < 2 ? 'border-r border-border' : ''}`}
+       className={`p-8 md:p-16 ${i < 3 ? 'md:border-r border-b md:border-b-0 border-border' : ''}`}
       >
        <span className='text-6xl font-display font-bold opacity-10 mb-8 block'>
         {step.num}
        </span>
        <h3 className='text-2xl font-display font-bold mb-4'>{step.title}</h3>
-       <p className='opacity-40'>{step.desc}</p>
+       <p className='opacity-40 leading-relaxed'>{step.desc}</p>
       </div>
      ))}
     </div>
