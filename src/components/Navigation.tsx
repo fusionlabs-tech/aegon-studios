@@ -55,9 +55,9 @@ export function Navigation() {
        <img
         src={theme === 'dark' ? '/images/logo_w_new.png' : '/images/logo_new.png'}
         alt='Aegon Studios'
-        className='h-12 w-auto object-contain'
+        className='h-8 md:h-12 w-auto object-contain'
        />
-       <span className='hidden sm:block font-hackney text-2xl capitalize tracking-wider -ml-2'>
+       <span className='font-hackney text-base md:text-2xl capitalize tracking-wider -ml-1 md:-ml-2'>
         Aegon Studios
        </span>
       </Link>
