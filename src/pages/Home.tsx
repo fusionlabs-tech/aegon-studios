@@ -97,7 +97,7 @@ function TypewriterSequence({
  }, [setCurtainOpen]);
 
  return (
-  <div className='flex flex-col items-center justify-center px-4 max-w-5xl'>
+  <div className='flex flex-col items-center justify-center px-6 max-w-sm md:max-w-5xl text-center'>
    <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -107,13 +107,13 @@ function TypewriterSequence({
     <img
      src='/images/logo_w_new.png'
      alt='Aegon Studios'
-     className='h-24 w-auto object-contain'
+     className='h-12 md:h-24 w-auto object-contain'
     />
-    <span className='font-hackney text-4xl md:text-5xl capitalize tracking-wider text-white -ml-4 mt-2'>
+    <span className='font-hackney text-xl md:text-5xl capitalize tracking-wider text-white -ml-2 md:-ml-4 mt-1 md:mt-2'>
      Aegon Studios
     </span>
    </motion.div>
-   <p className='text-white font-display font-medium italic tracking-tight text-center text-3xl md:text-5xl leading-tight'>
+   <p className='text-white font-display font-medium italic tracking-tight text-center text-lg md:text-5xl leading-snug'>
     {displayedText1}
     {/* Cursor 1: Visible while text1 is typing */}
     {displayedText1.length < text1.length && (
@@ -253,18 +253,30 @@ export function Home() {
      {/* Video Background Layer */}
      <div className='absolute inset-0 z-0'>
       <AnimatePresence mode='wait'>
-       <motion.iframe
+       <motion.div
         key={heroVideos[currentVideoIndex].id}
-        src={heroVideos[currentVideoIndex].src}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
-        className='absolute inset-0 w-full h-full opacity-60 pointer-events-none'
-        allow='autoplay; encrypted-media'
-        allowFullScreen
-        style={{ border: 'none', transform: 'scale(1.15)' }}
-       />
+        className='absolute inset-0 opacity-60 pointer-events-none overflow-hidden'
+       >
+        <iframe
+         src={heroVideos[currentVideoIndex].src}
+         allow='autoplay; encrypted-media'
+         className='absolute pointer-events-none'
+         style={{
+          border: 'none',
+          top: '50%',
+          left: '50%',
+          width: '177.78vh',
+          minWidth: '100%',
+          height: '56.25vw',
+          minHeight: '100%',
+          transform: 'translate(-50%, -50%)',
+         }}
+        />
+       </motion.div>
       </AnimatePresence>
       <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20 opacity-90' />
       <div className='absolute inset-0 bg-[url("https://grainy-gradients.vercel.app/noise.svg")] opacity-20 pointer-events-none'></div>
@@ -272,34 +284,6 @@ export function Home() {
 
      {/* Content Layer */}
      <div className='relative z-10 h-full flex flex-col justify-between px-6 md:px-16 py-8 md:py-12'>
-      {/* Top Bar - Video Title (Top Left) */}
-      <div className='flex justify-between items-start border-b border-white/10 pb-8'>
-       <div className='flex flex-col gap-2'>
-        <span className='text-[10px] tracking-widest opacity-50 uppercase text-white'>
-         Current Viewing
-        </span>
-        <AnimatePresence mode='wait'>
-         <motion.h2
-          key={currentVideoIndex}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className='text-xl md:text-3xl font-display font-bold tracking-tight text-white'
-         >
-          {heroVideos[currentVideoIndex].title}
-         </motion.h2>
-        </AnimatePresence>
-        {/* Progress Bar for video */}
-        <motion.div
-         key={`progress-${currentVideoIndex}`}
-         initial={{ width: '0%' }}
-         animate={{ width: '100%' }}
-         transition={{ duration: 10, ease: 'linear' }}
-         className='h-0.5 bg-white/50 mt-2 w-24 md:w-32'
-        />
-       </div>
-      </div>
 
       {/* Middle: Empty to let video shine */}
       <div className='flex-1'></div>
@@ -314,9 +298,9 @@ export function Home() {
        <div className='md:col-span-4 flex justify-end items-end'>
         <Link
          to='/contact'
-         className='group flex items-center gap-4 bg-white text-black px-8 py-4 rounded-full font-bold tracking-widest hover:scale-105 transition-transform'
+         className='group flex items-center gap-2 md:gap-4 bg-white text-black px-4 py-2 md:px-8 md:py-4 rounded-full text-[10px] md:text-sm font-bold tracking-widest hover:scale-105 transition-transform'
         >
-         START PROJECT <ArrowUpRightIcon weight='bold' size={20} />
+         START PROJECT <ArrowUpRightIcon weight='bold' size={14} className='md:hidden' /><ArrowUpRightIcon weight='bold' size={20} className='hidden md:block' />
         </Link>
        </div>
       </div>
